@@ -21,8 +21,20 @@
     object-position: center;
 }
 
+.row.row--margin > div {
+    margin-bottom: 20px;
+}
+
+.section__title {
+    margin-bottom: 20px;
+}
+
 .slider {
     padding-bottom: 23px;
+}
+
+.slider .carousel-item {
+    height: 430px;
 }
 
 .slider__arrows {
@@ -69,4 +81,33 @@
     display: block;
     margin-bottom: 5px;
     font-size: 0.9rem;
+}
+
+.lawyers .card-body {
+    padding: 10px;
+}
+
+.offices__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.services__text {
+    font-size: 14px;
+}
+
+/* imgs */
+
+.management__img {
+    height: 200px;
+}
+
+.lawyers__img {
+    height: 145px;
+}
+
+.offices__img {
+    height: 80px;
 }

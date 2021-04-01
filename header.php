@@ -23,19 +23,20 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse navbar" id="main_nav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active"> <a class="nav-link" href="#">Home </a> </li>
-                    <li class="nav-item"><a class="nav-link" href="#"> About </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"> Services </a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Hover me </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"> Submenu item 1</a></li>
-                            <li><a class="dropdown-item" href="#"> Submenu item 2 </a></li>
-                            <li><a class="dropdown-item" href="#"> Submenu item 3 </a></li>
-                        </ul>
-                    </li>
-                </ul>
+
+                <?php
+
+                $args = [
+                    'theme_location' => 'header',
+                    'container'      => false,
+                    'items_wrap'     => '<ul class="navbar-nav">%3$s</ul>',
+                    'walker'         => new Bootstrap_Nav_Menu(),
+                ];
+
+                wp_nav_menu($args);
+
+                ?>
+
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0">
                     <input type="search" class="form-control" placeholder="Search...">
                 </form>

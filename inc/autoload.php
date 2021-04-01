@@ -1,6 +1,6 @@
 <?php
 
-function getDirContents($dir, &$results = array())
+function getDirContents($dir, &$results = [])
 {
     $files = scandir($dir);
 
