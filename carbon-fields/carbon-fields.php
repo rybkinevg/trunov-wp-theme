@@ -7,6 +7,5 @@ function crb_attach_theme_options()
     require(dirname(__FILE__) . '/fields-post.php');
     require(dirname(__FILE__) . '/fields-publications.php');
     require(dirname(__FILE__) . '/fields-partners.php');
-    require(dirname(__FILE__) . '/fields-certificates.php');
     require(dirname(__FILE__) . '/fields-advocats.php');
 }
