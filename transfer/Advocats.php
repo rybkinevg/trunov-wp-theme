@@ -2,9 +2,9 @@
 
 namespace rybkinevg\trunov;
 
-class Works extends Transfer
+class Advocats extends Transfer
 {
-    static $post_type = 'works';
+    static $post_type = 'advocats';
 
     protected static function get(): array
     {
@@ -12,19 +12,30 @@ class Works extends Transfer
 
         $query = "
             SELECT
-                *
+                `p`.`id`,
+                `p`.`name`,
+                `p`.`alias`,
+                `p`.`anons`,
+                `p`.`text`,
+                `p`.`url_img`,
+                `p`.`date`,
+                `p`.`active`,
+                `p`.`parent_id`,
+                `t`.`id_topic`,
+                `t`.`id_topic_dir`,
+                `tn`.`name` as `topic_name`
             FROM
-                `aleksnet_document`
+                `aleksnet_document` as `p`
+            LEFT JOIN
+                `aleksnet_doc_topic` as `t`
+            ON
+                `p`.`id` = `t`.`id`
+            LEFT JOIN
+                `aleksnet_topic_document` as `tn`
+            ON
+                `t`.`id_topic` = `tn`.`id`
             WHERE
-                `parent_id` = '16076'
-            OR
-                `parent_id` = '15540'
-            OR
-                `parent_id` = '15011'
-            OR
-                `parent_id` = '15541'
-            OR
-                `parent_id` = '15012'
+                `p`.`parent_id` = '109'
             ORDER BY
                 `id`
         ";
@@ -46,7 +57,7 @@ class Works extends Transfer
         foreach ($posts as $post) {
 
             $args = [
-                'post_type'    => self::$post_type
+                'post_type' => self::$post_type
             ];
 
             $data = parent::generate_args($post, $args);
@@ -58,68 +69,38 @@ class Works extends Transfer
                 parent::show_error($inserted, "<p>ID поста: {$post->id}</p>");
             }
 
-            carbon_set_post_meta($inserted, 'works-url', $post->url);
+            if ($post->id == '15710' || $post->id == '15711') {
 
-            // Книги, монографии
-            if ($post->parent_id == '15541') {
+                carbon_set_post_meta($post->id, 'status', 'head');
+            } else {
 
-                $tax_slug = 'works-categories';
-
-                $term = get_term_by('name', 'Публикации Айвар Людмилы Константиновны', $tax_slug);
-
-                $term_id = $term->term_id;
-
-                wp_set_post_terms($inserted, [$term_id], $tax_slug);
-
-                $tax_slug = 'works-types';
-
-                $term = get_term_by('name', 'Книги, монографии', $tax_slug);
-
-                $term_id = $term->term_id;
-
-                wp_set_post_terms($inserted, [$term_id], $tax_slug);
+                carbon_set_post_meta($post->id, 'status', 'staff');
             }
 
-            if ($post->parent_id == '15012') {
+            if ($post->id_topic_dir == '512') {
 
-                $tax_slug = 'works-categories';
+                $offices = [
+                    '513' => 'Франция',
+                    '514' => 'Ирландия',
+                    '519' => 'Соединённые Шта́ты Аме́рики',
+                    '527' => 'Болгария',
+                    '541' => 'Эстония',
+                    '555' => 'Португалия',
+                    '568' => 'Англия',
+                    '575' => 'Израиль',
+                    '581' => 'Украина',
+                    '589' => 'Канада'
+                ];
 
-                $term = get_term_by('name', 'Публикации Трунова Игоря Леонидовича', $tax_slug);
+                if (isset($offices[$post->id_topic])) {
 
-                $term_id = $term->term_id;
+                    $office = get_page_by_title($offices[$post->id_topic], OBJECT, 'predstavitelstva');
 
-                wp_set_post_terms($inserted, [$term_id], $tax_slug);
+                    carbon_set_post_meta($post->id, 'office', $office->ID);
+                } else {
 
-                $tax_slug = 'works-types';
-
-                $term = get_term_by('name', 'Книги, монографии', $tax_slug);
-
-                $term_id = $term->term_id;
-
-                wp_set_post_terms($inserted, [$term_id], $tax_slug);
-            }
-
-            // Научные статьи
-            if ($post->parent_id == '15540') {
-
-                $tax_slug = 'works-categories';
-
-                $term = get_term_by('name', 'Публикации Айвар Людмилы Константиновны', $tax_slug);
-
-                $term_id = $term->term_id;
-
-                wp_set_post_terms($inserted, [$term_id], $tax_slug);
-            }
-
-            if ($post->parent_id == '15011') {
-
-                $tax_slug = 'works-categories';
-
-                $term = get_term_by('name', 'Публикации Трунова Игоря Леонидовича', $tax_slug);
-
-                $term_id = $term->term_id;
-
-                wp_set_post_terms($inserted, [$term_id], $tax_slug);
+                    carbon_set_post_meta($post->id, 'office', 'null');
+                }
             }
         }
 
@@ -172,19 +153,19 @@ class Works extends Transfer
     public static function page_block()
     {
         $data = [
-            'title' => 'Научные и учебно-методические труды',
+            'title' => 'Адвокаты',
             'status' => parent::get_status(self::$post_type),
             'forms' => [
                 [
                     'title'  => 'Импорт',
-                    'desc'   => 'Импорт научных и учебно-методических трудов, проставление таксономий',
+                    'desc'   => 'Импорт адвокатов и юристов, проставление таксономий',
                     'btn'    => 'Импортировать',
                     'action' => self::$post_type . '_get'
                 ],
                 [
-                    'title'  => 'Миниатюра',
+                    'title'  => 'Миниатюры',
                     'desc'   => 'Скачать и установить миниатюры',
-                    'btn'    => 'Импортировать',
+                    'btn'    => 'Скачать',
                     'action' => self::$post_type . '_set_thumbs'
                 ],
                 [

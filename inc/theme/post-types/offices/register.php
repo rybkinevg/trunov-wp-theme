@@ -6,10 +6,15 @@ function register_offices()
 {
     $post_type = 'offices';
 
+    $rewrite = [
+        'slug'     => 'predstavitelstva',
+        'in_front' => true
+    ];
+
     $args = [
         'label'  => null,
         'labels' => [
-            'name'               => 'Представительства',
+            'name'               => 'Зарубежные представительства',
             'singular_name'      => 'Представительство',
             'add_new'            => 'Добавить офис',
             'add_new_item'       => 'Добавление офиса',
@@ -30,10 +35,10 @@ function register_offices()
         'menu_position'       => null,
         'menu_icon'           => 'dashicons-admin-site',
         'hierarchical'        => false,
-        'supports'            => ['title', 'editor', 'thumbnail'],
+        'supports'            => ['title', 'editor', 'thumbnail', 'excerpt'],
         'taxonomies'          => [],
         'has_archive'         => true,
-        'rewrite'             => true,
+        'rewrite'             => $rewrite,
         'query_var'           => true,
     ];
 

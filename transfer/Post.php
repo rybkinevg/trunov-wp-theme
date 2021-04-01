@@ -2,7 +2,7 @@
 
 namespace rybkinevg\trunov;
 
-class Posts extends Transfer
+class Post extends Transfer
 {
     static $post_type = 'post';
 
@@ -47,10 +47,18 @@ class Posts extends Transfer
                 'post_type' => self::$post_type
             ];
 
+            // Алиас этой новости превышает ограничение VARCHAR(200)
+            if ($post->id == '21116') {
+
+                $args['post_name'] = 'Синайская авиакатастрофа';
+            }
+
             $data = parent::generate_args($post, $args);
 
             $data['ID'] = $post->id;
+
             unset($data['import_id']);
+
             unset($data['meta_input']);
 
             $inserted = $wpdb->insert(
@@ -242,6 +250,9 @@ class Posts extends Transfer
 
                     continue;
                 }
+
+                if ($post->id_topic == '416')
+                    wp_set_post_tags($wpdb->id, 'Важное', true);
 
                 $term = get_term_by('name', $post->name, $tax_slug);
 

@@ -9,7 +9,7 @@ $person_arr = [];
 $posts = get_posts(
     [
         'numberposts' => -1,
-        'post_type'   => 'lawyers',
+        'post_type'   => 'advocats',
         'post_status' => 'publish'
     ]
 );

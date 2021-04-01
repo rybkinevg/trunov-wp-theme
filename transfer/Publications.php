@@ -2,9 +2,9 @@
 
 namespace rybkinevg\trunov;
 
-class Lawyers extends Transfer
+class Publications extends Transfer
 {
-    static $post_type = 'lawyers';
+    static $post_type = 'publications';
 
     protected static function get(): array
     {
@@ -12,30 +12,19 @@ class Lawyers extends Transfer
 
         $query = "
             SELECT
-                `p`.`id`,
-                `p`.`name`,
-                `p`.`text`,
-                `p`.`url_img`,
-                `p`.`date`,
-                `p`.`active`,
-                `p`.`parent_id`,
-                `t`.`id_topic`,
-                `t`.`id_topic_dir`,
-                `tn`.`name` as `topic_name`
+                *
             FROM
-                `aleksnet_document` as `p`
-            LEFT JOIN
-                `aleksnet_doc_topic` as `t`
-            ON
-                `p`.`id` = `t`.`id`
-            LEFT JOIN
-                `aleksnet_topic_document` as `tn`
-            ON
-                `t`.`id_topic` = `tn`.`id`
+                `aleksnet_document`
             WHERE
-                `p`.`parent_id` = '109'
+                `parent_id` = '16076'
             OR
-                `p`.`parent_id` = '15712'
+                `parent_id` = '15540'
+            OR
+                `parent_id` = '15011'
+            OR
+                `parent_id` = '15541'
+            OR
+                `parent_id` = '15012'
             ORDER BY
                 `id`
         ";
@@ -69,40 +58,68 @@ class Lawyers extends Transfer
                 parent::show_error($inserted, "<p>ID поста: {$post->id}</p>");
             }
 
-            if ($post->id == '15710' || $post->id == '15711') {
+            carbon_set_post_meta($inserted, 'publications-url', $post->url);
 
-                carbon_set_post_meta($post->id, 'status', 'head');
-            } else {
+            // Книги, монографии
+            if ($post->parent_id == '15541') {
 
-                carbon_set_post_meta($post->id, 'status', 'staff');
+                $tax_slug = 'publications-categories';
+
+                $term = get_term_by('name', 'Публикации Айвар Людмилы Константиновны', $tax_slug);
+
+                $term_id = $term->term_id;
+
+                wp_set_post_terms($inserted, [$term_id], $tax_slug);
+
+                $tax_slug = 'publications-types';
+
+                $term = get_term_by('name', 'Книги, монографии', $tax_slug);
+
+                $term_id = $term->term_id;
+
+                wp_set_post_terms($inserted, [$term_id], $tax_slug);
             }
 
-            if ($post->parent_id == '109') {
+            if ($post->parent_id == '15012') {
 
-                $tax_slug = 'lawyers_tax';
+                $tax_slug = 'publications-categories';
 
-                $term = get_term_by('name', 'Адвокат', $tax_slug);
+                $term = get_term_by('name', 'Публикации Трунова Игоря Леонидовича', $tax_slug);
 
-                if ($term) {
+                $term_id = $term->term_id;
 
-                    $term_id = $term->term_id;
+                wp_set_post_terms($inserted, [$term_id], $tax_slug);
 
-                    wp_set_post_terms($post->id, [$term_id], $tax_slug, false);
-                }
+                $tax_slug = 'publications-types';
+
+                $term = get_term_by('name', 'Книги, монографии', $tax_slug);
+
+                $term_id = $term->term_id;
+
+                wp_set_post_terms($inserted, [$term_id], $tax_slug);
             }
 
-            if (!is_null($post->id_topic)) {
+            // Научные статьи
+            if ($post->parent_id == '15540') {
 
-                $tax_slug = 'offices';
+                $tax_slug = 'publications-categories';
 
-                $term = get_term_by('name', $post->topic_name, $tax_slug);
+                $term = get_term_by('name', 'Публикации Айвар Людмилы Константиновны', $tax_slug);
 
-                if ($term) {
+                $term_id = $term->term_id;
 
-                    $term_id = $term->term_id;
+                wp_set_post_terms($inserted, [$term_id], $tax_slug);
+            }
 
-                    wp_set_post_terms($post->id, [$term_id], $tax_slug, false);
-                }
+            if ($post->parent_id == '15011') {
+
+                $tax_slug = 'publications-categories';
+
+                $term = get_term_by('name', 'Публикации Трунова Игоря Леонидовича', $tax_slug);
+
+                $term_id = $term->term_id;
+
+                wp_set_post_terms($inserted, [$term_id], $tax_slug);
             }
         }
 
@@ -155,19 +172,19 @@ class Lawyers extends Transfer
     public static function page_block()
     {
         $data = [
-            'title' => 'Адвокаты',
+            'title' => 'Научные и учебно-методические труды',
             'status' => parent::get_status(self::$post_type),
             'forms' => [
                 [
                     'title'  => 'Импорт',
-                    'desc'   => 'Импорт адвокатов и юристов, проставление таксономий',
+                    'desc'   => 'Импорт научных и учебно-методических трудов, проставление таксономий',
                     'btn'    => 'Импортировать',
                     'action' => self::$post_type . '_get'
                 ],
                 [
-                    'title'  => 'Миниатюры',
+                    'title'  => 'Миниатюра',
                     'desc'   => 'Скачать и установить миниатюры',
-                    'btn'    => 'Скачать',
+                    'btn'    => 'Импортировать',
                     'action' => self::$post_type . '_set_thumbs'
                 ],
                 [

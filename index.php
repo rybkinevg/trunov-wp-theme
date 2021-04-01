@@ -2,6 +2,27 @@
 
 get_header();
 
+$args = [
+    'post_type'      => 'advocats',
+    'posts_per_page' => -1,
+    'post_status'    => 'publish',
+    'meta_query'     => [
+        [
+            'key'     => 'office',
+            'compare' => 'EXISTS'
+        ]
+    ]
+];
+
+$query = new WP_Query($args);
+
+while ($query->have_posts()) {
+
+    $query->the_post();
+
+    var_dump(carbon_get_post_meta(get_the_ID(), 'office'));
+}
+
 ?>
 
 Просмотров: <?php echo get_post_meta(3973, 'views', true); ?>

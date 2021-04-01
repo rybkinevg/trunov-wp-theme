@@ -4,12 +4,14 @@ use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
 // Массив Представительств
-$offices_arr = [];
+$offices_arr = [
+    'null' => 'Не выбрано'
+];
 
 $posts = get_posts(
     [
         'numberposts' => -1,
-        'post_type'   => 'offices',
+        'post_type'   => 'predstavitelstva',
         'post_status' => 'publish'
     ]
 );
@@ -21,7 +23,7 @@ foreach ($posts as $post) {
 wp_reset_postdata();
 
 Container::make('post_meta', 'Дополнительные поля')
-    ->show_on_post_type('lawyers')
+    ->show_on_post_type('advocats')
     ->add_fields(
         [
             Field::make('select', 'office', 'Представительство')
@@ -31,7 +33,7 @@ Container::make('post_meta', 'Дополнительные поля')
     );
 
 Container::make('post_meta', 'Информация о статусе')
-    ->show_on_post_type('lawyers')
+    ->show_on_post_type('advocats')
     ->add_fields(
         [
             Field::make('select', 'status', 'Статус адвоката')

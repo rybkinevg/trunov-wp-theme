@@ -59,17 +59,18 @@ class Transfer
     protected static function generate_args($post, array $args): array
     {
         $default = [
-            'import_id'    => $post->id,
-            'post_title'   => self::check_title($post->name),
-            'post_content' => $post->text, // null
-            'post_date'    => self::check_date($post->date),
-            'post_name'    => $post->id, // опт. не только ID
-            'post_author'  => 1,
-            'post_status'  => ($post->active == 1) ? "publish" : "pending",
-            'post_type'    => 'post',
-            'post_excerpt' => '',
-            'meta_input'   => '',
-            'post_parent'  => 0,
+            'import_id'      => $post->id,
+            'post_title'     => self::check_title($post->name),
+            'post_content'   => $post->text,
+            'post_date'      => self::check_date($post->date),
+            'post_name'      => $post->alias,
+            'post_author'    => 1,
+            'post_status'    => ($post->active == 1) ? "publish" : "private",
+            'post_type'      => 'post',
+            'post_excerpt'   => $post->anons ?: '',
+            'meta_input'     => '',
+            'post_parent'    => 0,
+            'comment_status' => 'closed'
         ];
 
         $data = wp_parse_args($args, $default);
@@ -149,10 +150,12 @@ class Transfer
             );
         });
 
-        Lawyers::actions();
+        Offices::actions();
+        Advocats::actions();
         Services::actions();
-        Posts::actions();
-        Works::actions();
+        Post::actions();
+        Publications::actions();
+
         Books::actions();
         Court::actions();
         Partners::actions();

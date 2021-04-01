@@ -56,18 +56,9 @@ class Services extends Transfer
                 parent::show_error($inserted, "<p>ID поста: {$post->id}</p>");
             }
 
-            // При импорте не понятно почему в конце `post_name` проставлялась цифра 2 (`post_name-2`)
-            // Проставлялась почему-то только при использовании числового `post_name`
-            // Получилось вылечить только обновлением данных поста после импорта
-            $wpdb->update(
-                $wpdb->posts,
-                ['post_name' => $inserted],
-                ['ID' => $inserted]
-            );
-
             if ($post->parent_id == '16790') {
 
-                $tax_slug = 'services_categories';
+                $tax_slug = 'uslugi_type';
 
                 $term = get_term_by('name', 'Физическим лицам', $tax_slug);
 
@@ -76,7 +67,7 @@ class Services extends Transfer
                 wp_set_post_terms($inserted, [$term_id], $tax_slug, false);
             } elseif ($post->parent_id == '118') {
 
-                $tax_slug = 'services_categories';
+                $tax_slug = 'uslugi_type';
 
                 $term = get_term_by('name', 'Юридический бизнес', $tax_slug);
 
@@ -137,18 +128,9 @@ class Services extends Transfer
                     self::show_error($child_inserted, $message);
                 }
 
-                // При импорте не понятно почему в конце `post_name` проставлялась цифра 2 (`post_name-2`)
-                // Проставлялась почему-то только при использовании числового `post_name`
-                // Получилось вылечить только обновлением данных поста после импорта
-                $wpdb->update(
-                    $wpdb->posts,
-                    ['post_name' => $child_inserted],
-                    ['ID' => $child_inserted]
-                );
-
                 if (!is_null($term_id)) {
 
-                    $tax_slug = 'services_categories';
+                    $tax_slug = 'uslugi_type';
 
                     wp_set_post_terms($child_inserted, [$term_id], $tax_slug, false);
                 }
