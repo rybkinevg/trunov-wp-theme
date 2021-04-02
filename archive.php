@@ -46,7 +46,7 @@ if (have_posts()) {
 
                     <?php
 
-                    get_template_part('template-parts/sidebar/sidebar');
+                    get_template_part('template-parts/sidebar/sidebar', $post_type);
 
                     ?>
 

@@ -16,11 +16,11 @@ class Services extends Transfer
             FROM
                 `aleksnet_document`
             WHERE
-                `parent_id` = '16789'
+                `id` = '16789'
             OR
-                `parent_id` = '16790'
+                `id` = '16790'
             OR
-                `parent_id` = '118'
+                `id` = '118'
             ORDER BY
                 `id`
         ";
@@ -41,8 +41,6 @@ class Services extends Transfer
 
         foreach ($posts as $post) {
 
-            global $wpdb;
-
             $args = [
                 'post_type' => self::$post_type
             ];
@@ -56,30 +54,7 @@ class Services extends Transfer
                 parent::show_error($inserted, "<p>ID поста: {$post->id}</p>");
             }
 
-            if ($post->parent_id == '16790') {
-
-                $tax_slug = 'uslugi_type';
-
-                $term = get_term_by('name', 'Физическим лицам', $tax_slug);
-
-                $term_id = $term->term_id;
-
-                wp_set_post_terms($inserted, [$term_id], $tax_slug, false);
-            } elseif ($post->parent_id == '118') {
-
-                $tax_slug = 'uslugi_type';
-
-                $term = get_term_by('name', 'Юридический бизнес', $tax_slug);
-
-                $term_id = $term->term_id;
-
-                wp_set_post_terms($inserted, [$term_id], $tax_slug, false);
-            } else {
-
-                $term_id = null;
-            }
-
-            self::get_services_children($inserted, $term_id);
+            self::get_services_children($inserted);
         }
 
         $updated = parent::set_status(self::$post_type, 'Выполнено');
@@ -88,7 +63,7 @@ class Services extends Transfer
             parent::show_error(null, var_dump($status));
     }
 
-    protected static function get_services_children($id, $term_id = null)
+    protected static function get_services_children($id)
     {
         global $wpdb;
 
@@ -128,14 +103,7 @@ class Services extends Transfer
                     self::show_error($child_inserted, $message);
                 }
 
-                if (!is_null($term_id)) {
-
-                    $tax_slug = 'uslugi_type';
-
-                    wp_set_post_terms($child_inserted, [$term_id], $tax_slug, false);
-                }
-
-                self::get_services_children($child_inserted, $term_id);
+                self::get_services_children($child_inserted);
             }
         }
     }

@@ -5,13 +5,13 @@ use Carbon_Fields\Field;
 
 // Массив Представительств
 $offices_arr = [
-    'null' => 'Не выбрано'
+    '0' => 'Не выбрано'
 ];
 
 $posts = get_posts(
     [
         'numberposts' => -1,
-        'post_type'   => 'predstavitelstva',
+        'post_type'   => 'offices',
         'post_status' => 'publish'
     ]
 );
@@ -27,7 +27,8 @@ Container::make('post_meta', 'Дополнительные поля')
     ->add_fields(
         [
             Field::make('select', 'office', 'Представительство')
-                ->set_options($offices_arr)
+                ->add_options($offices_arr)
+                ->set_default_value(0)
                 ->set_help_text('Выберите представительство'),
         ]
     );
@@ -43,6 +44,7 @@ Container::make('post_meta', 'Информация о статусе')
                         'head'  => 'Глава коллегии'
                     ]
                 )
+                ->set_default_value('staff')
                 ->set_help_text('Выберите статус адвоката, если выбран статус "Глава коллегии", то откроется доступ к заполнению следующих полей'),
             Field::make('text', 'position', 'Должность')
                 ->set_conditional_logic(

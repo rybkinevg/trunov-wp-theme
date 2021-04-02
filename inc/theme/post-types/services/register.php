@@ -1,6 +1,6 @@
 <?php
 
-add_action('init', 'services_register', 20);
+add_action('init', 'services_register');
 
 function services_register()
 {

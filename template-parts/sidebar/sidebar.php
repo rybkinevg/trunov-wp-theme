@@ -1,5 +1,5 @@
 <section class="sidebar__section topics">
-    <h2 class="h4 d-none">Темы</h2>
+    <h2 class="h4 visually-hidden">Темы</h2>
     <div class="card">
         <div class="row g-0">
             <div class="col-md-4">

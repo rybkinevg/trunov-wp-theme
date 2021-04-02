@@ -94,13 +94,13 @@ class Advocats extends Transfer
 
                 if (isset($offices[$post->id_topic])) {
 
-                    $office = get_page_by_title($offices[$post->id_topic], OBJECT, 'predstavitelstva');
+                    $office = get_page_by_title($offices[$post->id_topic], OBJECT, 'offices');
 
                     carbon_set_post_meta($post->id, 'office', $office->ID);
-                } else {
-
-                    carbon_set_post_meta($post->id, 'office', 'null');
                 }
+            } else {
+
+                carbon_set_post_meta($post->id, 'office', 0);
             }
         }
 
