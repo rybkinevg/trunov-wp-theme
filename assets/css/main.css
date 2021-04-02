@@ -20,6 +20,25 @@
     }
 }
 
+.body {
+    background-image: url('../img/site.png');
+}
+
+.site {
+    background: #FFF;
+}
+
+.site__item {
+    padding: 0 20px;
+}
+
+.header {
+    background-image: url('../img/header.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
 .img {
     display: block;
 }
@@ -109,7 +128,7 @@
 }
 
 .main {
-    padding: 30px 0;
+    margin: 30px 0;
 }
 
 /* imgs */

@@ -8,17 +8,18 @@
     <?php wp_head(); ?>
 </head>
 
-<body>
+<body class="body">
 
-    <header class="py-3">
-        <div class="container d-flex flex-wrap justify-content-center">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                <span class="fs-4">Double header</span>
-            </a>
-        </div>
-    </header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
+    <div class="container site p-0">
+
+        <header class="site__item header">
+            <div class="d-flex flex-wrap justify-content-center">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                    <span class="fs-4">Double header</span>
+                </a>
+            </div>
+        </header>
+        <nav class="site__item navbar navbar-expand-lg navbar-dark bg-primary">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -41,5 +42,4 @@
                     <input type="search" class="form-control" placeholder="Search...">
                 </form>
             </div>
-        </div>
-    </nav>
+        </nav>

@@ -8,59 +8,52 @@ if (have_posts()) {
 
 ?>
 
-    <main class="main">
-        <div class="container">
-            <div class="breadcrums">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Главная</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Пресс-центр</li>
-                    </ol>
-                </nav>
-            </div>
-            <section class="archive archive__<?= $post_type; ?>">
-                <h2 class="archive__head">
-                    <?= trunov_archive_title($post_type); ?>
-                </h2>
-                <div class="row">
+    <main class="main site__item">
+        <div class="breadcrums">
+            <?php trunov_breadcrumbs(); ?>
+        </div>
+        <section class="archive archive__<?= $post_type; ?>">
+            <h2 class="archive__head">
+                <?= trunov_archive_title($post_type); ?>
+            </h2>
+            <div class="row">
 
-                    <div class="content col-lg-8">
-                        <ul class="archive__list">
-
-                            <?php
-
-                            while (have_posts()) {
-
-                                the_post();
-
-                                get_template_part('template-parts/archive/content', $post_type);
-                            }
-
-                            ?>
-
-                        </ul>
+                <div class="content col-lg-8">
+                    <ul class="archive__list">
 
                         <?php
 
-                        trunov_pagiantion();
+                        while (have_posts()) {
+
+                            the_post();
+
+                            get_template_part('template-parts/archive/content', $post_type);
+                        }
 
                         ?>
 
-                    </div>
+                    </ul>
 
-                    <aside class="sidebar col-md-4 d-none d-lg-block">
+                    <?php
 
-                        <?php
+                    trunov_pagiantion();
 
-                        get_template_part('template-parts/sidebar/sidebar');
-
-                        ?>
-
-                    </aside>
+                    ?>
 
                 </div>
-            </section>
-        </div>
+
+                <aside class="sidebar col-md-4 d-none d-lg-block">
+
+                    <?php
+
+                    get_template_part('template-parts/sidebar/sidebar');
+
+                    ?>
+
+                </aside>
+
+            </div>
+        </section>
     </main>
 
 <?php
