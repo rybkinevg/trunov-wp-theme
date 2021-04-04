@@ -1,9 +1,9 @@
 <?php
 
 $args = [
-    'post_type'      => 'post',
-    'posts_per_page' => 3,
-    'tag'            => sanitize_title('Aнонс')
+    'post_type'      => 'partners',
+    'posts_per_page' => -1,
+    'post_status'    => 'public'
 ];
 
 $query = new WP_Query($args);
@@ -14,7 +14,7 @@ $query = new WP_Query($args);
 
     <h2 class="section__title visually-hidden">Новости на главной</h2>
 
-    <div class="index-news">
+    <div class="partners">
 
         <?php
 
@@ -26,13 +26,10 @@ $query = new WP_Query($args);
 
         ?>
 
-                <div class="index-news__item">
-                    <div class="d-block w-100">
+                <div class="parners__item" style="height: 100px; background: #fff;">
+                    <div class="d-block w-100" style="height: 100%;">
                         <?= trunov_get_thumbnail(); ?>
-                    </div>
-                    <div class="index-news__caption">
-                        <h5><a href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a></h5>
-                        <p class="d-none d-md-block"><?= kama_excerpt(['maxchar' => 100, 'autop' => false]) ?></p>
+                        <img class="img img--cover" src="http://trunov.loc/wp-content/uploads/2015/08/d_15963.gif" alt="Миниатюра записи">
                     </div>
                 </div>
 

@@ -6,6 +6,11 @@ function register_court()
 {
     $post_type = 'court';
 
+    $rewrite = [
+        'slug'     => 'rekvizits_sud',
+        'in_front' => true
+    ];
+
     $args = [
         'label'  => null,
         'labels' => [
@@ -33,7 +38,7 @@ function register_court()
         'supports'            => ['title', 'editor', 'thumbnail', 'custom-fields'],
         'taxonomies'          => [],
         'has_archive'         => true,
-        'rewrite'             => true,
+        'rewrite'             => $rewrite,
         'query_var'           => true,
     ];
 

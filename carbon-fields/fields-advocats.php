@@ -64,20 +64,19 @@ Container::make('post_meta', 'Информация о статусе')
                         ]
                     ]
                 ),
-            Field::make('set', 'extra', 'Дополнительные ссылки, материалы')
+            Field::make('complex', 'extra', 'Дополнительные ссылки, материалы')
+                ->add_fields(
+                    [
+                        Field::make('text', 'title', 'Название'),
+                        Field::make('text', 'link', 'Ссылка'),
+                    ]
+                )
                 ->set_conditional_logic(
                     [
                         [
                             'field' => 'status',
                             'value' => 'head',
                         ]
-                    ]
-                )
-                ->set_options(
-                    [
-                        'tv'     => 'Телепередачи',
-                        'works'  => 'Научные статьи',
-                        'actual' => 'Актуальные дела',
                     ]
                 )
         ]

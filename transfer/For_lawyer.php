@@ -4,7 +4,7 @@ namespace rybkinevg\trunov;
 
 class For_lawyer extends Transfer
 {
-    static $post_type = 'for-lawyer';
+    static $post_type = 'for_lawyer';
 
     protected static function get(): array
     {

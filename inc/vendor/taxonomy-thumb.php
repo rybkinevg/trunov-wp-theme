@@ -21,7 +21,7 @@ if (is_admin() && !class_exists('Term_Meta_Image')) {
 
     class Term_Meta_Image
     {
-        static $taxes = ['smi'];
+        static $taxes = ['smi', 'topics', 'gromkie_dela'];
 
         // название мета ключа
         static $meta_key = '_thumbnail_id';

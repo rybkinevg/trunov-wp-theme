@@ -254,20 +254,21 @@ class Kama_Breadcrumbs
                 // не древовидная такса (метки)
                 elseif (!is_taxonomy_hierarchical($term->taxonomy)) {
                     // метка
-                    if (is_tag())
-                        $out = $this->_add_title('', $term, sprintf($loc->tag, esc_html($term->name)));
+                    if (is_tag()) {
+                        // $out = $this->_add_title('', $term, sprintf($loc->tag, esc_html($term->name)));
+                    }
                     // такса
                     elseif (is_tax()) {
                         $post_label = $ptype->labels->name;
                         $tax_label = $GLOBALS['wp_taxonomies'][$term->taxonomy]->labels->name;
-                        $out = $this->_add_title('', $term, sprintf($loc->tax_tag, $post_label, $tax_label, esc_html($term->name)));
+                        // $out = $this->_add_title('', $term, sprintf($loc->tax_tag, $post_label, $tax_label, esc_html($term->name)));
                     }
                 }
                 // древовидная такса (рибрики)
                 else {
                     if (!$out = apply_filters('term_tax_crumbs', '', $term, $this)) {
                         $_crumbs = $this->_tax_crumbs($term, 'parent');
-                        $out = $this->_add_title($_crumbs, $term, esc_html($term->name));
+                        // $out = $this->_add_title($_crumbs, $term, esc_html($term->name));
                     }
                 }
             }
@@ -304,13 +305,14 @@ class Kama_Breadcrumbs
 
                 // первая страница архива типа записи
                 if (is_post_type_archive() && !$paged_num) {
+
                     $home_after = sprintf($this->arg->title_patt, $pt_title);
 
                     $home_after = '';
                 } else {
                     $home_after = sprintf($linkpatt, get_post_type_archive_link($ptype->name), $pt_title);
 
-                    $home_after .= (($paged_num && !is_tax()) ? $pg_end : $sep); // пагинация
+                    // $home_after .= (($paged_num && !is_tax()) ? $pg_end : $sep); // пагинация
                 }
             }
         }

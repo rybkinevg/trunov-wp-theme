@@ -2,6 +2,12 @@
 
 function trunov_breadcrumbs()
 {
+    $l10n = [
+        'attachment' => '',
+        'tag'        => '',
+        'tax_tag'    => '',
+    ];
+
     $args = [
         'on_front_page'   => false,
         'show_post_title' => false,
@@ -13,5 +19,5 @@ function trunov_breadcrumbs()
         ],
     ];
 
-    kama_breadcrumbs('', [], $args);
+    kama_breadcrumbs('', $l10n, $args);
 }

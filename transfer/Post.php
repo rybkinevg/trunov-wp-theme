@@ -179,11 +179,54 @@ class Post extends Transfer
         }
     }
 
+    public static function set_smi_thumbs()
+    {
+        $args = [
+            'taxonomy'      => ['smi'],
+            'orderby'       => 'id',
+            'order'         => 'ASC',
+            'hide_empty'    => false,
+            'fields'        => 'all',
+            'get'           => 'all',
+            'exclude'       => [61, 107]
+        ];
+
+        $terms = get_terms($args);
+
+        foreach ($terms as $term) {
+
+            require_once(ABSPATH . 'wp-admin/includes/media.php');
+            require_once(ABSPATH . 'wp-admin/includes/file.php');
+            require_once(ABSPATH . 'wp-admin/includes/image.php');
+
+            $url = "https://trunov.com/img/aleksnet_topic_document/t_{$term->description}.jpg";
+
+            $thumb_id = media_sideload_image($url, 0, $term->name, 'id');
+
+            if (is_wp_error($thumb_id))
+                parent::show_error($thumb_id, 'Ошибка скачивания миниатюры. Ссыклка: ' . $url);
+
+            update_term_meta($term->term_id, '_thumbnail_id', $thumb_id);
+        }
+    }
+
     public static function set_post_tax()
     {
         $topics = self::get_taxes();
 
         foreach ($topics as $topic) {
+
+            global $wpdb;
+
+            if ($topic == '415') {
+
+                $posts = $wpdb->get_results('SELECT * FROM `aleksnet_doc_topic` WHERE `id_topic` = 416');
+
+                foreach ($posts as $post) {
+
+                    wp_set_post_tags($post->id, 'Важное', true);
+                }
+            }
 
             $tax = get_taxonomies(['description' => $topic['id']]);
 
@@ -191,8 +234,6 @@ class Post extends Transfer
                 continue;
 
             $tax_slug = array_shift($tax);
-
-            global $wpdb;
 
             $query = "
                 SELECT
@@ -250,9 +291,6 @@ class Post extends Transfer
 
                     continue;
                 }
-
-                if ($post->id_topic == '416')
-                    wp_set_post_tags($wpdb->id, 'Важное', true);
 
                 $term = get_term_by('name', $post->name, $tax_slug);
 
@@ -599,6 +637,15 @@ class Post extends Transfer
             exit();
         });
 
+        add_action('admin_action_' . self::$post_type . '_set_smi_thumbs', function () {
+
+            self::set_smi_thumbs();
+
+            wp_redirect($_SERVER['HTTP_REFERER']);
+
+            exit();
+        });
+
         add_action('admin_action_' . self::$post_type . '_delete', function () {
 
             parent::delete(self::get(), self::$post_type);
@@ -638,6 +685,12 @@ class Post extends Transfer
                     'desc'   => 'Скачать и установить миниатюры',
                     'btn'    => 'Скачать',
                     'action' => self::$post_type . '_set_thumbs'
+                ],
+                [
+                    'title'  => 'Миниатюры СМИ',
+                    'desc'   => 'Скачать и установить миниатюры',
+                    'btn'    => 'Скачать',
+                    'action' => self::$post_type . '_set_smi_thumbs'
                 ],
                 [
                     'title'  => 'Очистка',

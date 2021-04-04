@@ -8,7 +8,7 @@ unset($args);
 if ($post_type == 'advocats') {
 
     $args = [
-        'post_type'      => 'advocats',
+        'post_type'      => $post_type,
         'posts_per_page' => -1,
         'post_status'    => 'publish',
         'meta_query'     => [
@@ -35,13 +35,12 @@ if ($post_type == 'advocats') {
         'orderby' => [
             'rus' => 'ASC',
             'offices' => 'ASC',
-            'date'    => 'ASC'
         ]
     ];
 } else {
 
     $args = [
-        'post_type'      => 'advocats',
+        'post_type'      => $post_type,
         'posts_per_page' => -1,
         'post_status'    => 'publish',
     ];

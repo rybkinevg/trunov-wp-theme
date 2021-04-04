@@ -4,16 +4,16 @@
  * Тип записи: Научные и учебно-методические труды
  */
 
-add_action('init', 'register_publications');
+add_action('init', 'register_publications', 20);
 
 function register_publications()
 {
     $post_type = 'publications';
 
-    $rewrite = [
-        'slug'     => 'nauchnye_i_uchebno_metodicheskie_trudy',
-        'in_front' => true
-    ];
+    // $rewrite = [
+    //     'slug'     => 'nauchnye_i_uchebno_metodicheskie_trudy',
+    //     'in_front' => true
+    // ];
 
     $args = [
         'label'  => null,
@@ -33,7 +33,7 @@ function register_publications()
         ],
         'description'         => '',
         'public'              => true,
-        'show_in_menu'        => null,
+        'show_in_menu'        => true,
         'show_in_rest'        => null,
         'rest_base'           => null,
         'menu_position'       => null,
@@ -41,9 +41,9 @@ function register_publications()
         'hierarchical'        => false,
         'supports'            => ['title', 'editor'],
         'taxonomies'          => [],
-        'has_archive'         => true,
-        'rewrite'             => $rewrite,
-        'query_var'           => true,
+        'has_archive'         => 'nauchnye_i_uchebno_metodicheskie_trudy',
+        'rewrite'             => true,
+        'query_var'           => true
     ];
 
     register_post_type($post_type, $args);

@@ -28,10 +28,38 @@ function trunov_scripts()
         ],
         [
             'type'   => 'css',
+            'handle' => 'slick-style',
+            'src'    => $uri . '/vendor/slick/slick.css',
+            'deps'   => [],
+            'ver'    => ''
+        ],
+        [
+            'type'   => 'css',
+            'handle' => 'slick-theme-style',
+            'src'    => $uri . '/vendor/slick/slick-theme.css',
+            'deps'   => [],
+            'ver'    => ''
+        ],
+        [
+            'type'   => 'js',
+            'handle' => 'slick-script',
+            'src'    => $uri . '/vendor/slick/slick.min.js',
+            'deps'   => ['jquery'],
+            'ver'    => ''
+        ],
+        [
+            'type'   => 'css',
             'handle' => 'main-style',
             'src'    => $uri . '/css/main.css',
             'deps'   => [],
             'ver'    => filemtime($src . '/css/main.css')
+        ],
+        [
+            'type'   => 'js',
+            'handle' => 'main-script',
+            'src'    => $uri . '/js/main.js',
+            'deps'   => [],
+            'ver'    => filemtime($src . '/js/main.js')
         ],
     ];
 

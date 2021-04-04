@@ -4,6 +4,7 @@ namespace rybkinevg\trunov;
 
 class Images extends Transfer
 {
+    static $post_type = 'post_images';
 
     protected static function get()
     {
@@ -29,8 +30,6 @@ class Images extends Transfer
 
     public static function set()
     {
-        require(get_template_directory() . '/includes/vendor/simple_html_dom.php');
-
         $posts = self::get();
 
         global $wpdb;
@@ -107,5 +106,35 @@ class Images extends Transfer
         }
 
         return (!is_wp_error($thumb_src)) ? $thumb_src : $url;
+    }
+
+    public static function actions()
+    {
+        add_action('admin_action_' . self::$post_type . '_get', function () {
+
+            self::set();
+
+            wp_redirect($_SERVER['HTTP_REFERER']);
+
+            exit();
+        });
+    }
+
+    public static function page_block()
+    {
+        $data = [
+            'title' => 'Внутренние картинки',
+            'status' => '',
+            'forms' => [
+                [
+                    'title'  => 'Скачать',
+                    'desc'   => 'Скачать и установить внутренние картинки постов',
+                    'btn'    => 'Скачать',
+                    'action' => self::$post_type . '_get'
+                ]
+            ]
+        ];
+
+        return $data;
     }
 }

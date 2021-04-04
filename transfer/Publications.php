@@ -65,7 +65,7 @@ class Publications extends Transfer
 
                 $tax_slug = 'publications-categories';
 
-                $term = get_term_by('name', 'Публикации Айвар Людмилы Константиновны', $tax_slug);
+                $term = get_term_by('name', 'Список научных и учебно-методических трудов адвоката Айвар Людмилы Константиновны', $tax_slug);
 
                 $term_id = $term->term_id;
 
@@ -84,7 +84,7 @@ class Publications extends Transfer
 
                 $tax_slug = 'publications-categories';
 
-                $term = get_term_by('name', 'Публикации Трунова Игоря Леонидовича', $tax_slug);
+                $term = get_term_by('name', 'Список научных и учебно-методических трудов адвоката Трунова Игоря Леонидовича', $tax_slug);
 
                 $term_id = $term->term_id;
 
@@ -104,7 +104,7 @@ class Publications extends Transfer
 
                 $tax_slug = 'publications-categories';
 
-                $term = get_term_by('name', 'Публикации Айвар Людмилы Константиновны', $tax_slug);
+                $term = get_term_by('name', 'Список научных и учебно-методических трудов адвоката Айвар Людмилы Константиновны', $tax_slug);
 
                 $term_id = $term->term_id;
 
@@ -115,7 +115,7 @@ class Publications extends Transfer
 
                 $tax_slug = 'publications-categories';
 
-                $term = get_term_by('name', 'Публикации Трунова Игоря Леонидовича', $tax_slug);
+                $term = get_term_by('name', 'Список научных и учебно-методических трудов адвоката Трунова Игоря Леонидовича', $tax_slug);
 
                 $term_id = $term->term_id;
 

@@ -6,6 +6,7 @@ use rybkinevg\trunov\Transfer;
 require(dirname(__FILE__) . '/Transfer.php');
 require(dirname(__FILE__) . '/Offices.php');
 require(dirname(__FILE__) . '/Advocats.php');
+require(dirname(__FILE__) . '/Juristy.php');
 require(dirname(__FILE__) . '/Services.php');
 require(dirname(__FILE__) . '/Post.php');
 require(dirname(__FILE__) . '/Publications.php');

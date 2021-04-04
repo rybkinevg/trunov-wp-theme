@@ -1,22 +1,50 @@
+<?php
+
+$args = [
+    'post_type' => 'services',
+    'posts_per_page' => -1,
+    'post_parent__in' => [get_page_by_title('Юридический бизнес', 'OBJECT', 'services')->ID]
+];
+
+$query = new WP_Query($args);
+
+?>
+
 <section class="section services">
 
     <h2 class="section__title h4">Юридический бизнес</h2>
 
     <div class="row">
 
-        <div class="col-lg-4 col-md-6">
+        <?php
 
-            <div class="card">
-                <div class="services__img">
-                    <img class="img--cover" src="http://trunov.com/img/aleksnet_document/d_15719.jpg" class="card-img-top" alt="...">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title text-center h6">Регистрация юридических лиц и смежные отрасли</h5>
-                    <p class="d-none d-lg-block card-text services__text">Организация бизнеса во Франции и получения французского вида на жительство.</p>
-                </div>
-            </div>
+        if ($query->have_posts()) {
 
-        </div>
+            while ($query->have_posts()) {
+
+                $query->the_post();
+
+        ?>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="services__img">
+                            <?= trunov_get_thumbnail(); ?>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><a href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a></h5>
+                            <div class="d-none d-lg-block card-text services__text"><?= kama_excerpt(['maxchar' => 80, 'autop' => false]) ?></div>
+                        </div>
+                    </div>
+                </div>
+
+        <?php
+
+            }
+        }
+        wp_reset_postdata();
+
+        ?>
 
     </div>
 

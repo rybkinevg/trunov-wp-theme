@@ -21,8 +21,8 @@ function register_publications_categories()
         'public'                => true,
         'hierarchical'          => false,
         'rewrite'               => [
-            'slug'     => 'nauchnye_i_uchebno_metodicheskie_trudy',
-            'in_front' => true
+            'slug' => 'nauchnye_i_uchebno_metodicheskie_trudy',
+            'with_front' => true
         ],
         'meta_box_cb'           => 'post_categories_meta_box',
         'show_admin_column'     => true,
@@ -31,6 +31,15 @@ function register_publications_categories()
     ];
 
     register_taxonomy($tax_name, $post_types, $args);
+
+    add_rewrite_rule('nauchnye_i_uchebno_metodicheskie_trudy/' . 'nauchnye_publikacii_advokatov_kollegii' . '/?$', 'index.php?post_type=' . 'publications' . '&taxonomy=' . 'publications-categories', 'top');
+    add_rewrite_rule('nauchnye_i_uchebno_metodicheskie_trudy/' . 'nauchnye_publikacii_advokatov_kollegii' . '/page/(\d+)/?$', 'index.php?post_type=' . 'publications' . '&taxonomy=' . 'publications-categories' . '&paged=$matches[1]', 'top');
+
+    add_rewrite_rule('nauchnye_i_uchebno_metodicheskie_trudy/' . 'spisok_nauchnyh_i_uchebno-metodicheskih_trudov_advokata_trunova' . '/?$', 'index.php?post_type=' . 'publications' . '&taxonomy=' . 'publications-categories', 'top');
+    add_rewrite_rule('nauchnye_i_uchebno_metodicheskie_trudy/' . 'spisok_nauchnyh_i_uchebno-metodicheskih_trudov_advokata_trunova' . '/page/(\d+)/?$', 'index.php?post_type=' . 'publications' . '&taxonomy=' . 'publications-categories' . '&paged=$matches[1]', 'top');
+
+    add_rewrite_rule('nauchnye_i_uchebno_metodicheskie_trudy/' . 'spisok_nauchnyh_i_uchebno-metodicheskih_trudov_advokata_ajvar' . '/?$', 'index.php?post_type=' . 'publications' . '&taxonomy=' . 'publications-categories', 'top');
+    add_rewrite_rule('nauchnye_i_uchebno_metodicheskie_trudy/' . 'spisok_nauchnyh_i_uchebno-metodicheskih_trudov_advokata_ajvar' . '/page/(\d+)/?$', 'index.php?post_type=' . 'publications' . '&taxonomy=' . 'publications-categories' . '&paged=$matches[1]', 'top');
 
     $taxes = [
         [

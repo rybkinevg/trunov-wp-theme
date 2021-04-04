@@ -145,6 +145,7 @@ function print_block($args)
 
     print_block(rybkinevg\trunov\Offices::page_block());
     print_block(rybkinevg\trunov\Advocats::page_block());
+    print_block(rybkinevg\trunov\Juristy::page_block());
     print_block(rybkinevg\trunov\Services::page_block());
     print_block(rybkinevg\trunov\Post::page_block());
     print_block(rybkinevg\trunov\Publications::page_block());
@@ -157,6 +158,10 @@ function print_block($args)
     print_block(rybkinevg\trunov\SOS::page_block());
     print_block(rybkinevg\trunov\Certificates::page_block());
     print_block(rybkinevg\trunov\Vacancies::page_block());
+
+    echo "<hr/>";
+
+    print_block(rybkinevg\trunov\Images::page_block());
 
     ?>
 

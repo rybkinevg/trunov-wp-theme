@@ -2,9 +2,9 @@
 
 namespace rybkinevg\trunov;
 
-class Services extends Transfer
+class Juristy extends Transfer
 {
-    static $post_type = 'services';
+    static $post_type = 'juristy';
 
     protected static function get(): array
     {
@@ -16,11 +16,7 @@ class Services extends Transfer
             FROM
                 `aleksnet_document`
             WHERE
-                `id` = '16789'
-            OR
-                `id` = '16790'
-            OR
-                `id` = '118'
+                `parent_id` = '15712'
             ORDER BY
                 `id`
         ";
@@ -49,63 +45,14 @@ class Services extends Transfer
 
             $inserted = wp_insert_post($data, true);
 
-            if (is_wp_error($inserted)) {
-
+            if (is_wp_error($inserted))
                 parent::show_error($inserted, "<p>ID поста: {$post->id}</p>");
-            }
-
-            self::get_services_children($inserted);
         }
 
         $updated = parent::set_status(self::$post_type, 'Выполнено');
 
         if (!$updated)
             parent::show_error(null, var_dump($status));
-    }
-
-    protected static function get_services_children($id)
-    {
-        global $wpdb;
-
-        $query = "
-            SELECT
-                *
-            FROM
-                `aleksnet_document`
-            WHERE
-                `parent_id` = '{$id}'
-            ORDER BY
-                `id`
-        ";
-
-        $posts = $wpdb->get_results($query);
-
-        if (!is_null($posts) && !empty($posts)) {
-
-            foreach ($posts as $post) {
-
-                $args = [
-                    'post_type'    => self::$post_type,
-                    'post_parent'  => $id
-                ];
-
-                $data = parent::generate_args($post, $args);
-
-                $child_inserted = wp_insert_post($data, true);
-
-                if (is_wp_error($child_inserted)) {
-
-                    $message = "
-                        <p>ID поста: {$post->id}</p>
-                        <p>ID родителя: {$post->parent_id}</p>
-                    ";
-
-                    self::show_error($child_inserted, $message);
-                }
-
-                self::get_services_children($child_inserted);
-            }
-        }
     }
 
     public static function set_thumbs()
@@ -115,36 +62,6 @@ class Services extends Transfer
         foreach ($posts as $post) {
 
             parent::set_post_thumb($post->id, $post->url_img);
-
-            self::get_services_children_thumbs($post->id);
-        }
-    }
-
-    protected static function get_services_children_thumbs($id)
-    {
-        global $wpdb;
-
-        $query = "
-            SELECT
-                *
-            FROM
-                `aleksnet_document`
-            WHERE
-                `parent_id` = '{$id}'
-            ORDER BY
-                `id`
-        ";
-
-        $posts = $wpdb->get_results($query);
-
-        if (!is_null($posts) && !empty($posts)) {
-
-            foreach ($posts as $post) {
-
-                parent::set_post_thumb($post->id, $post->url_img);
-
-                self::get_services_children_thumbs($post->id);
-            }
         }
     }
 
@@ -181,12 +98,12 @@ class Services extends Transfer
     public static function page_block()
     {
         $data = [
-            'title' => 'Услуги',
+            'title' => 'Юристы',
             'status' => parent::get_status(self::$post_type),
             'forms' => [
                 [
                     'title'  => 'Импорт',
-                    'desc'   => 'Импорт услуг, их дочерних страниц и таксономий',
+                    'desc'   => 'Импорт юристов',
                     'btn'    => 'Импортировать',
                     'action' => self::$post_type . '_get'
                 ],

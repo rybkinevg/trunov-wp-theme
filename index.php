@@ -4,8 +4,6 @@ get_header();
 
 ?>
 
-Просмотров: <?php echo get_post_meta(3973, 'views', true); ?>
-
 <main class="main site__item">
     <div class="row">
         <div class="content col-lg-8">
@@ -24,7 +22,7 @@ get_header();
 
             get_template_part('template-parts/index/content', 'services');
 
-            get_template_part('template-parts/index/content', 'photoarchive');
+            // get_template_part('template-parts/index/content', 'photoarchive');
 
             get_template_part('template-parts/index/content', 'about');
 

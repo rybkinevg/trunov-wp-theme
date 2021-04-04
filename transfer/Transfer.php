@@ -152,6 +152,7 @@ class Transfer
 
         Offices::actions();
         Advocats::actions();
+        Juristy::actions();
         Services::actions();
         Post::actions();
         Publications::actions();
@@ -164,6 +165,7 @@ class Transfer
         SOS::actions();
         Certificates::actions();
         Vacancies::actions();
+        Images::actions();
     }
 
     public static function generate_page()

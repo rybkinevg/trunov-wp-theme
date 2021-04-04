@@ -4,7 +4,12 @@ add_action('init', 'register_for_lawyer');
 
 function register_for_lawyer()
 {
-    $post_type = 'for-lawyer';
+    $post_type = 'for_lawyer';
+
+    $rewrite = [
+        'slug'     => 'for_advocats',
+        'in_front' => true
+    ];
 
     $args = [
         'label'  => null,
@@ -20,7 +25,7 @@ function register_for_lawyer()
             'not_found'          => 'Не найдено',
             'not_found_in_trash' => 'Не найдено в корзине',
             'parent_item_colon'  => '',
-            'menu_name'          => 'Адвокату',
+            'menu_name'          => 'Для адвоката',
         ],
         'description'         => '',
         'public'              => true,
@@ -33,7 +38,7 @@ function register_for_lawyer()
         'supports'            => ['title', 'editor', 'thumbnail'],
         'taxonomies'          => [],
         'has_archive'         => true,
-        'rewrite'             => true,
+        'rewrite'             => $rewrite,
         'query_var'           => true,
     ];
 
