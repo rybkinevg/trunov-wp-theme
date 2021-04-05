@@ -1,3 +1,87 @@
+/* GLOBALS */
+
+.body {
+    background-image: url('../img/site.png');
+}
+
+a {
+    color: #000;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.site__item {
+    padding: 0 20px;
+    background: #FFF;
+}
+
+.img {
+    display: block;
+}
+
+.img--cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.img--contain {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.card-holder {
+    height: 100%;
+    padding-bottom: 20px;
+}
+
+.card {
+    height: 100%;
+}
+
+/* HEADER */
+
+.header {
+    background-image: url('../img/header.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.logo__mob {
+    padding: 10px 0;
+    height: 70px;
+}
+
+.logo__mob .img {
+    object-position: left;
+}
+
+.navbar-nav {
+    flex: 1 1 auto;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+}
+
+.dropdown-toggle--plus {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 40px;
+    border: 0;
+    background: transparent;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.dropdown-toggle--plus.show {
+    transform: rotate(45deg);
+}
+
 @media all and (min-width: 992px) {
     .navbar .nav-item .dropdown-menu {
         display: none;
@@ -15,98 +99,46 @@
 }
 
 @media (max-width: 992px) {
+    .navmenu {
+        margin-bottom: 20px;
+    }
+
     .dropdown-item {
         white-space: normal;
     }
 }
 
-.body {
-    background-image: url('../img/site.png');
-}
-
-a {
-    text-decoration: none !important;
-}
-
-/* .site {
-    background: #FFF;
-} */
-
-.site__item {
-    padding: 0 20px;
-    background: #FFF;
-}
-
-.header {
-    background-image: url('../img/header.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
-.navbar-nav {
-    flex: 1 1 auto;
-}
-
-.navbar-nav .nav-link {
-    font-weight: 500;
-}
-
-.dropdown-toggle--plus {
-    position: absolute;
-    top: .5rem;
-    right: 0;
-    padding: 0;
-    height: 20px;
-}
-
-.about {
-    font-size: 12px;
-}
-
-.img {
-    display: block;
-}
-
-.img--cover {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-.logo__mob {
-    padding: 10px 0;
-    height: 70px;
-}
-
-.logo__mob .img {
-    object-position: left;
-}
-
-.img--contain {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-/* .lawyers .card {
-    height: 100%;
-} */
-
-.lawyers .card-body {
+.social {
     display: flex;
     align-items: center;
-    flex: 1 1 auto;
 }
 
-.card {
+.social__link {
+    display: block;
+    padding: 0 10px;
+    font-size: 1.3rem;
+}
+
+.social__link:not(:last-child) {
+    border-right: 1px solid #dee2e6;
+}
+
+/* MAIN */
+
+.main {
+    padding: 30px 20px;
     margin-bottom: 20px;
 }
 
-/* .services .card {
-    height: 100%;
-} */
+.section {
+    margin-bottom: 20px;
+}
+
+.section__title {
+    margin-bottom: 20px;
+}
+
+/* MAIN - SERVICES */
 
 .services .card-body {
     display: flex;
@@ -124,50 +156,81 @@ a {
     font-size: 12px;
 }
 
-.row.row--margin > div {
-    margin-bottom: 20px;
+/* MAIN - INDEX-NEWS */
+
+.index-news__item {
+    position: relative;
+    height: 500px;
 }
 
-.section__title {
-    margin-bottom: 20px;
-}
-
-.slider {
-    padding-bottom: 23px;
-}
-
-.slider .carousel-item {
-    height: 430px;
-}
-
-.slider__arrows {
-    width: 40px;
-    background: rgba(0, 0, 0, 0.1);
-}
-
-.slider__caption {
+.index-news__caption {
     position: absolute;
-    right: 0;
     bottom: 0;
-    left: 0;
     padding: 20px;
-    color: #212529;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    background: rgba(0, 0, 0, 0.7);
 }
 
-.slider .carousel-indicators {
-    margin-bottom: 0 !important;
-    bottom: -23px;
+.index-news__caption a {
+    color: #fff;
 }
 
-.slider .carousel-indicators [data-bs-target] {
-    background-color: #212529;
+.index-news__caption a:hover {
+    color: #0d6efd;
 }
 
-.section {
-    margin-bottom: 20px;
+.slick-arrow {
+    z-index: 1;
 }
+
+.slick-prev {
+    left: 10px;
+}
+
+.slick-next {
+    right: 10px;
+}
+
+.slick-prev:before, .slick-next:before {
+    font-size: 26px;
+}
+
+/* MAIN - MANAGEMENT */
+
+.management__img {
+    height: 200px;
+}
+
+/* MAIN - OFFICES */
+
+.offices__img {
+    height: 100%;
+}
+
+.offices__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* MAIN - LAWYERS */
+
+.lawyers .card-body {
+    padding: 10px;
+}
+
+.lawyers__img {
+    height: 145px;
+}
+
+/* MAIN - ABOUT */
+
+.about {
+    font-size: 12px;
+}
+
+/* MAIN - SIDEBAR */
 
 .sidebar__text {
     display: flex;
@@ -186,21 +249,7 @@ a {
     font-size: 0.9rem;
 }
 
-.lawyers .card-body {
-    padding: 10px;
-}
-
-.offices__text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-
-.main {
-    padding: 30px 20px;
-    margin-bottom: 20px;
-}
+/* FOOTER */
 
 .footer {
     padding-top: 20px;
@@ -221,30 +270,12 @@ a {
     color: #838282;
 }
 
-/* imgs */
-
-.management__img {
-    height: 200px;
-}
-
-.lawyers__img {
-    height: 145px;
-}
-
-.offices__img {
-    height: 100%;
-}
-
-/* archive */
+/* ARCHIVE */
 
 .archive__list {
     margin: 0;
     padding: 0;
     list-style: none;
-}
-
-.archive__list-item {
-    margin-bottom: 20px;
 }
 
 .archive__img {
@@ -260,45 +291,14 @@ a {
     height: 100%;
 }
 
-/* slider */
-
-.index-news__item {
-    position: relative;
+.archive__props {
+    font-size: 14px;
 }
 
-.index-news__caption {
-    position: absolute;
-    bottom: 0;
-    padding: 20px;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.7);
-}
+/* SINGLE */
 
-.index-news__caption a {
-    color: #fff;
-}
-
-.index-news__caption a:hover {
-    color: #0d6efd;
-}
-
-a {
-    color: #000;
-    transition: color 0.3s;
-}
-
-.slick-arrow {
-    z-index: 1;
-}
-
-.slick-prev {
-    left: 10px;
-}
-
-.slick-next {
-    right: 10px;
-}
-
-.slick-prev:before, .slick-next:before {
-    font-size: 26px;
+.single__props {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
 }

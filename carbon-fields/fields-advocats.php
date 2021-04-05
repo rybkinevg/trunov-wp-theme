@@ -67,7 +67,14 @@ Container::make('post_meta', 'Информация о статусе')
             Field::make('complex', 'extra', 'Дополнительные ссылки, материалы')
                 ->add_fields(
                     [
-                        Field::make('text', 'title', 'Название'),
+                        Field::make('select', 'title', 'Название')
+                            ->set_options(
+                                [
+                                    'publications' => 'Научные публикации',
+                                    'tv'           => 'Телевидение',
+                                    'actual'       => 'Актуальные дела'
+                                ]
+                            ),
                         Field::make('text', 'link', 'Ссылка'),
                     ]
                 )

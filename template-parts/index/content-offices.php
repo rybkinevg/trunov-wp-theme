@@ -27,18 +27,20 @@ $query = new WP_Query($args);
         ?>
 
                 <div class="col-lg-4 col-md-6">
-                    <div class="card offices__item">
-                        <div class="row g-0">
-                            <div class="col-md-5">
-                                <div class="offices__img">
-                                    <?= trunov_get_thumbnail(); ?>
+                    <div class="card-holder">
+                        <div class="card offices__item">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <div class="offices__img">
+                                        <?= trunov_get_thumbnail(); ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="card-body offices__text">
-                                    <h5 class="card-title text-center m-0">
-                                        <a href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a>
-                                    </h5>
+                                <div class="col-md-7">
+                                    <div class="card-body offices__text">
+                                        <h5 class="card-title text-center m-0">
+                                            <a href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a>
+                                        </h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>

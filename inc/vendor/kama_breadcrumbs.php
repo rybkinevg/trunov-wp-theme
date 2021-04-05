@@ -140,6 +140,7 @@ class Kama_Breadcrumbs
             $out = $loc->_404;
         } elseif (is_search()) {
             $out = sprintf($loc->search, esc_html($GLOBALS['s']));
+            $out = '';
         } elseif (is_author()) {
             $tit = sprintf($loc->author, esc_html($q_obj->display_name));
             $out = ($paged_num ? sprintf($linkpatt, get_author_posts_url($q_obj->ID, $q_obj->user_nicename) . $pg_end, $tit) : $tit);

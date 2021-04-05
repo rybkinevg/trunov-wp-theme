@@ -1,3 +1,14 @@
+<?php
+
+$args = [
+    'theme_location' => 'header',
+    'container'      => false,
+    'items_wrap'     => '<ul class="navbar-nav">%3$s</ul>',
+    'walker'         => new Bootstrap_Nav_Menu(),
+];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,22 +48,51 @@
             </button>
             <div class="collapse navbar-collapse navbar" id="main_nav">
 
-                <?php
+                <div class="row w-100 justify-content-between">
 
-                $args = [
-                    'theme_location' => 'header',
-                    'container'      => false,
-                    'items_wrap'     => '<ul class="navbar-nav">%3$s</ul>',
-                    'walker'         => new Bootstrap_Nav_Menu(),
-                ];
+                    <div class="col-12 col-lg-auto navmenu">
+                        <?php wp_nav_menu($args); ?>
+                    </div>
 
-                wp_nav_menu($args);
+                    <div class="col-auto">
+                        <div class="social">
+                            <a class="social__link" href="#">
+                                <i class="fa fa-vk" aria-hidden="true"></i>
+                            </a>
+                            <a class="social__link" href="#">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a class="social__link" href="#">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
 
-                ?>
+                    <div class="col-auto d-flex justify-content-center">
 
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Поиск по сайту" aria-label="Search">
-                    <button class="btn btn-outline-dark" type="submit">Найти</button>
-                </form>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#search-modal">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="modal fade" id="search-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="search-modal-label">Поиск по сайту</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                            </div>
+                            <div class="modal-body">
+                                <?= get_search_form(); ?>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </nav>

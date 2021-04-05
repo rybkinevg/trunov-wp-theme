@@ -67,16 +67,18 @@ $query = new WP_Query($args);
         ?>
 
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                    <div class="card">
-                        <div class="lawyers__img">
-                            <?= trunov_get_thumbnail(); ?>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text text-center">
-                                <a href="<?= get_the_permalink(); ?>">
-                                    <?= get_the_title(); ?>
-                                </a>
-                            </p>
+                    <div class="card-holder">
+                        <div class="card">
+                            <div class="lawyers__img">
+                                <?= trunov_get_thumbnail(); ?>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text text-center">
+                                    <a href="<?= get_the_permalink(); ?>">
+                                        <?= get_the_title(); ?>
+                                    </a>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

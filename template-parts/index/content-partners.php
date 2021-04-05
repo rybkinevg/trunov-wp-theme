@@ -29,7 +29,6 @@ $query = new WP_Query($args);
                 <div class="parners__item" style="height: 100px; background: #fff;">
                     <div class="d-block w-100" style="height: 100%;">
                         <?= trunov_get_thumbnail(); ?>
-                        <img class="img img--cover" src="http://trunov.loc/wp-content/uploads/2015/08/d_15963.gif" alt="Миниатюра записи">
                     </div>
                 </div>
 

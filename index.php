@@ -22,7 +22,7 @@ get_header();
 
             get_template_part('template-parts/index/content', 'services');
 
-            // get_template_part('template-parts/index/content', 'photoarchive');
+            get_template_part('template-parts/index/content', 'photoarchive');
 
             get_template_part('template-parts/index/content', 'about');
 

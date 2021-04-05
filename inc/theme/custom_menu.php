@@ -103,7 +103,7 @@ class Bootstrap_Nav_Menu extends Walker_Nav_Menu
 
         $indent = str_repeat($t, $depth);
 
-        $toggle_btn = '<button class="d-lg-none dropdown-toggle--plus btn btn-outline-dark" data-bs-toggle="dropdown" aria-expanded="false">+</button>';
+        $toggle_btn = '<button class="d-lg-none dropdown-toggle--plus" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>';
 
         $output .= "{$n}{$indent}{$toggle_btn}<ul class='dropdown-menu'>{$n}";
     }

@@ -38,30 +38,63 @@ $query = new WP_Query($args);
 
                 <div class="col-md-12 col-lg-6">
 
-                    <div class="card">
-                        <div class="management__img">
-                            <?= trunov_get_thumbnail(); ?>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <a href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a>
-                            </h5>
-                            <p class="card-text"><?= carbon_get_post_meta(get_the_ID(), 'position') ?></p>
-                        </div>
-
-                        <ul class="list-group list-group-flush">
+                    <div class="card-holder">
+                        <div class="card">
+                            <div class="management__img">
+                                <?= trunov_get_thumbnail(); ?>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a>
+                                </h5>
+                                <p class="card-text"><?= carbon_get_post_meta(get_the_ID(), 'position') ?></p>
+                            </div>
 
                             <?php
 
                             $extra = carbon_get_post_meta(get_the_ID(), 'extra');
 
-                            foreach ($extra as $item) {
+                            if ($extra) {
+
+                                $data = [
+                                    'publications' => [
+                                        'title' => 'Научные статьи',
+                                        'icon'  => 'pencil-square-o'
+                                    ],
+                                    'tv' => [
+                                        'title' => 'Телевидение',
+                                        'icon'  => 'television'
+                                    ],
+                                    'actual' => [
+                                        'title' => 'Актуальные дела',
+                                        'icon'  => 'university '
+                                    ]
+                                ];
 
                             ?>
 
-                                <li class="list-group-item">
-                                    <a href="<?= $item['link'] ?>"><?= $item['title'] ?></a>
-                                </li>
+                                <ul class="list-group list-group-flush">
+
+                                    <?php
+
+                                    foreach ($extra as $item) {
+
+                                    ?>
+
+                                        <li class="list-group-item">
+                                            <a href="<?= $item['link'] ?>">
+                                                <i class="<?= "fa fa-{$data[$item['title']]['icon']} me-2" ?>" aria-hidden="true"></i>
+                                                <?= $data[$item['title']]['title'] ?>
+                                            </a>
+                                        </li>
+
+                                    <?php
+
+                                    }
+
+                                    ?>
+
+                                </ul>
 
                             <?php
 
@@ -69,8 +102,7 @@ $query = new WP_Query($args);
 
                             ?>
 
-                        </ul>
-
+                        </div>
                     </div>
 
                 </div>

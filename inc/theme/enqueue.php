@@ -41,6 +41,13 @@ function trunov_scripts()
             'ver'    => ''
         ],
         [
+            'type'   => 'css',
+            'handle' => 'fontawesome-style',
+            'src'    => $uri . '/vendor/fontawesome/css/font-awesome.min.css',
+            'deps'   => [],
+            'ver'    => ''
+        ],
+        [
             'type'   => 'js',
             'handle' => 'slick-script',
             'src'    => $uri . '/vendor/slick/slick.min.js',

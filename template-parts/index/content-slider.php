@@ -2,8 +2,8 @@
 
 $args = [
     'post_type'      => 'post',
-    'posts_per_page' => 3,
-    'tag'            => sanitize_title('Aнонс')
+    'posts_per_page' => 5,
+    'tag'            => sanitize_title('Важное') . "," . sanitize_title('Анонс')
 ];
 
 $query = new WP_Query($args);

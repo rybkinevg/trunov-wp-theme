@@ -18,24 +18,26 @@ $terms = get_terms($args);
 
     ?>
 
-        <div class="card">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <div class="sidebar__thumb">
-                        <picture>
-                            <source srcset="<?= get_template_directory_uri() . '/assets/img/blank.gif' ?>" media="(max-width: 992px)">
-                            <img class="img img--cover" src="<?= wp_get_attachment_url(get_term_meta($term->term_id, '_thumbnail_id')[0]); ?>" alt="">
-                        </picture>
+        <div class="card-holder">
+            <article class="card">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <div class="sidebar__thumb">
+                            <picture>
+                                <source srcset="<?= get_template_directory_uri() . '/assets/img/blank.gif' ?>" media="(max-width: 992px)">
+                                <img class="img img--cover" src="<?= wp_get_attachment_url(get_term_meta($term->term_id, '_thumbnail_id')[0]); ?>" alt="">
+                            </picture>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="sidebar__text card-body">
+                            <h5 class="card-title h6 m-0">
+                                <a href="<?= '/' . $term->taxonomy . '/' . $term->slug ?>"><?= $term->name ?></a>
+                            </h5>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-8">
-                    <div class="sidebar__text card-body">
-                        <h5 class="card-title h6 m-0">
-                            <a href="<?= '/' . $term->taxonomy . '/' . $term->slug ?>"><?= $term->name ?></a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
+            </article>
         </div>
 
     <?php
@@ -48,189 +50,89 @@ $terms = get_terms($args);
 
 <?php
 
-unset($args);
-
-$args = [
-    'post_type'      => 'post',
-    'posts_per_page' => 5,
-    'post_status'    => 'publish',
-    'category_name'  => 'news'
+$sidebar_news = [
+    'Новости'     => [
+        'category_name' => 'news'
+    ],
+    'Новости СМИ' => [
+        'category_name' => 'news_smi'
+    ],
+    'Анонсы'      => [
+        'tag' => sanitize_title('Анонс')
+    ],
 ];
 
-$query = new WP_Query($args);
+foreach ($sidebar_news as $label => $news) {
+
+    foreach ($news  as $key => $value) {
+
+        $args = [
+            'post_type'      => 'post',
+            'posts_per_page' => 5,
+            'post_status'    => 'publish',
+            'orderby'        => 'date'
+        ];
+
+        $args[$key] = $value;
+
+        $query = new WP_Query($args);
 
 ?>
 
-<section class="sidebar__section topics">
-    <h2 class="h4">Новости</h2>
+        <section class="sidebar__section news">
+            <h2 class="h4"><?= $label; ?></h2>
 
-    <?php
+            <?php
 
-    if ($query->have_posts()) {
+            if ($query->have_posts()) {
 
-        while ($query->have_posts()) {
+                while ($query->have_posts()) {
 
-            $query->the_post();
+                    $query->the_post();
 
-    ?>
+            ?>
 
-            <div class="card">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <div class="sidebar__thumb">
-                            <picture>
-                                <source srcset="<?= get_template_directory_uri() . '/assets/img/blank.gif' ?>" media="(max-width: 992px)">
-                                <?= trunov_get_thumbnail(); ?>
-                            </picture>
-                        </div>
+                    <div class="card-holder">
+                        <article class="card">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <div class="sidebar__thumb">
+                                        <picture>
+                                            <source srcset="<?= get_template_directory_uri() . '/assets/img/blank.gif' ?>" media="(max-width: 992px)">
+                                            <?= trunov_get_thumbnail(); ?>
+                                        </picture>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <span class="text-muted sidebar__date"><?= get_the_date(); ?></span>
+                                        <h5 class="card-title h6 m-0">
+                                            <a href="<?= get_the_permalink(); ?>">
+                                                <?= kama_excerpt(['maxchar' => 60, 'text' => get_the_title(), 'autop' => false]) ?>
+                                            </a>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <span class="text-muted sidebar__date"><?= get_the_date(); ?></span>
-                            <h5 class="card-title h6 m-0">
-                                <a href="<?= get_the_permalink(); ?>">
-                                    <?= kama_excerpt(['maxchar' => 60, 'text' => get_the_title()]) ?>
-                                </a>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-    <?php
+            <?php
 
-        }
-    }
+                }
+            }
 
-    wp_reset_postdata();
+            wp_reset_postdata();
 
-    ?>
+            ?>
 
-</section>
+        </section>
 
 <?php
-
-unset($args);
-
-$args = [
-    'post_type'      => 'post',
-    'posts_per_page' => 5,
-    'post_status'    => 'publish',
-    'category_name'  => 'news_smi'
-];
-
-$query = new WP_Query($args);
+    }
+}
 
 ?>
-
-<section class="sidebar__section topics">
-    <h2 class="h4">Новости СМИ</h2>
-
-    <?php
-
-    if ($query->have_posts()) {
-
-        while ($query->have_posts()) {
-
-            $query->the_post();
-
-    ?>
-
-            <div class="card">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <div class="sidebar__thumb">
-                            <picture>
-                                <source srcset="<?= get_template_directory_uri() . '/assets/img/blank.gif' ?>" media="(max-width: 992px)">
-                                <?= trunov_get_thumbnail(); ?>
-                            </picture>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <span class="text-muted sidebar__date"><?= get_the_date(); ?></span>
-                            <h5 class="card-title h6 m-0">
-                                <a href="<?= get_the_permalink(); ?>">
-                                    <?= kama_excerpt(['maxchar' => 60, 'text' => get_the_title()]) ?>
-                                </a>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-    <?php
-
-        }
-    }
-
-    wp_reset_postdata();
-
-    ?>
-
-</section>
-
-<?php
-
-unset($args);
-
-$args = [
-    'post_type'      => 'post',
-    'posts_per_page' => 5,
-    'post_status'    => 'publish',
-    'tag'            => sanitize_title('Анонс')
-];
-
-$query = new WP_Query($args);
-
-?>
-
-<section class="sidebar__section topics">
-    <h2 class="h4">Анонсы</h2>
-
-    <?php
-
-    if ($query->have_posts()) {
-
-        while ($query->have_posts()) {
-
-            $query->the_post();
-
-    ?>
-
-            <div class="card">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <div class="sidebar__thumb">
-                            <picture>
-                                <source srcset="<?= get_template_directory_uri() . '/assets/img/blank.gif' ?>" media="(max-width: 992px)">
-                                <?= trunov_get_thumbnail(); ?>
-                            </picture>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <span class="text-muted sidebar__date"><?= get_the_date(); ?></span>
-                            <h5 class="card-title h6 m-0">
-                                <a href="<?= get_the_permalink(); ?>">
-                                    <?= kama_excerpt(['maxchar' => 60, 'text' => get_the_title()]) ?>
-                                </a>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-    <?php
-
-        }
-    }
-
-    wp_reset_postdata();
-
-    ?>
-
-</section>
 
 <section class="sidebar__section topics">
     <h3 class="widget-title">Актуальные научные публикации</h3>
