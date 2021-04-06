@@ -7,6 +7,11 @@ $args = [
     'walker'         => new Bootstrap_Nav_Menu(),
 ];
 
+$site_title = carbon_get_theme_option('site-title');
+$site_desc = carbon_get_theme_option('site-desc');
+$site_contacts = carbon_get_theme_option('site-contacts');
+$site_socials = carbon_get_theme_option('site-socials');
+
 ?>
 
 <!DOCTYPE html>
@@ -28,14 +33,26 @@ $args = [
                     <img src="<?= get_template_directory_uri() . '/assets/img/logo.png' ?>" alt="">
                 </a>
                 <div class="header__brand">
-                    <h1>«ТРУНОВ, АЙВАР И ПАРТНЁРЫ»</h1>
-                    <p>Международная Юридическая фирма, основана в 2001 году</p>
+                    <h1><?= $site_title; ?></h1>
+                    <p><?= $site_desc; ?></p>
                 </div>
                 <div class="header__contacts">
-                    <p>+7(499)158-29-17</p>
-                    <p>+7(499)158-85-81</p>
-                    <p>+7(499)158-65-66</p>
-                    <p>info@copy.trunov.com</p>
+                    <?php
+
+                    if ($site_contacts) {
+
+                        foreach ($site_contacts as $contact) {
+
+                    ?>
+
+                            <p><a href="<?= $contact['site-contact-link'] ?>"><?= $contact['site-contact'] ?></a></p>
+
+                    <?php
+
+                        }
+                    }
+
+                    ?>
                 </div>
             </div>
         </header>
@@ -54,19 +71,39 @@ $args = [
                         <?php wp_nav_menu($args); ?>
                     </div>
 
-                    <div class="col-auto">
-                        <div class="social">
-                            <a class="social__link" href="#">
-                                <i class="fa fa-vk" aria-hidden="true"></i>
-                            </a>
-                            <a class="social__link" href="#">
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
-                            </a>
-                            <a class="social__link" href="#">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </a>
+                    <?php
+
+                    if ($site_socials) {
+
+                    ?>
+
+                        <div class="col-auto">
+                            <div class="social">
+
+                                <?php
+
+                                foreach ($site_socials as $social) {
+
+                                ?>
+
+                                    <a class="social__link" href="<?= $social['site-social-link'] ?>">
+                                        <i class="<?= "fa fa-{$social['site-social']}" ?>" aria-hidden="true"></i>
+                                    </a>
+
+                                <?php
+
+                                }
+
+                                ?>
+
+                            </div>
                         </div>
-                    </div>
+
+                    <?php
+
+                    }
+
+                    ?>
 
                     <div class="col-auto d-flex justify-content-center">
 

@@ -26,9 +26,11 @@ $query = new WP_Query($args);
 
         ?>
 
-                <div class="parners__item" style="height: 100px; background: #fff;">
+                <div class="parners__item">
                     <div class="d-block w-100" style="height: 100%;">
-                        <?= trunov_get_thumbnail(); ?>
+                        <a href="<?= carbon_get_post_meta(get_the_ID(), 'partners_url') ?>" target="_blank" rel="noopener noreferrer" title="<?= get_the_title(); ?>">
+                            <img class='img img--contain' src='<?= get_the_post_thumbnail_url(); ?>' alt='<?= get_the_title(); ?>'>
+                        </a>
                     </div>
                 </div>
 

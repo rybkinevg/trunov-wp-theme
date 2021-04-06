@@ -1,54 +1,72 @@
 <?php
 
-$args = [
-    'taxonomy'      => ['topics'],
-    'include'       => [511, 512]
-];
+$sidebar_topics = carbon_get_theme_option('sidebar-topics');
+$sidebar_publications = carbon_get_theme_option('sidebar-publications');
 
-$terms = get_terms($args);
+if ($sidebar_topics) {
+
+    foreach ($sidebar_topics as $topic) {
+
+        $include[] = $topic['id'];
+    }
+
+    $args = [
+        'taxonomy'      => ['topics'],
+        'include'       => $include
+    ];
+
+    $terms = get_terms($args);
+} else {
+
+    $terms = '';
+}
+
+if ($terms) {
 
 ?>
 
-<section class="sidebar__section topics">
-    <h2 class="h4 visually-hidden">Темы</h2>
+    <section class="sidebar__section topics">
+        <h2 class="h4 visually-hidden">Темы</h2>
+
+        <?php
+
+        foreach ($terms as $term) {
+
+        ?>
+
+            <div class="card-holder">
+                <article class="card">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <div class="sidebar__thumb">
+                                <picture>
+                                    <source srcset="<?= get_template_directory_uri() . '/assets/img/blank.gif' ?>" media="(max-width: 992px)">
+                                    <?= trunov_get_thumbnail(); ?>
+                                </picture>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="sidebar__text card-body">
+                                <h5 class="card-title h6 m-0">
+                                    <a href="<?= wp_make_link_relative(get_term_link($term->term_id, 'topics')); ?>"><?= $term->name ?></a>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        <?php
+
+        }
+
+        ?>
+
+    </section>
 
     <?php
 
-    foreach ($terms as $term) {
-
-    ?>
-
-        <div class="card-holder">
-            <article class="card">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <div class="sidebar__thumb">
-                            <picture>
-                                <source srcset="<?= get_template_directory_uri() . '/assets/img/blank.gif' ?>" media="(max-width: 992px)">
-                                <img class="img img--cover" src="<?= wp_get_attachment_url(get_term_meta($term->term_id, '_thumbnail_id')[0]); ?>" alt="">
-                            </picture>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="sidebar__text card-body">
-                            <h5 class="card-title h6 m-0">
-                                <a href="<?= '/' . $term->taxonomy . '/' . $term->slug ?>"><?= $term->name ?></a>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-    <?php
-
-    }
-
-    ?>
-
-</section>
-
-<?php
+}
 
 $sidebar_news = [
     'Новости'     => [
@@ -77,7 +95,7 @@ foreach ($sidebar_news as $label => $news) {
 
         $query = new WP_Query($args);
 
-?>
+    ?>
 
         <section class="sidebar__section news">
             <h2 class="h4"><?= $label; ?></h2>
@@ -128,43 +146,74 @@ foreach ($sidebar_news as $label => $news) {
 
         </section>
 
-<?php
+    <?php
     }
 }
 
+if ($sidebar_publications) {
+
+    foreach ($sidebar_publications as $publication) {
+
+        $include[] = $publication['id'];
+    }
+
+    $args = [
+        'post_type'      => 'publications',
+        'posts_per_page' => 5,
+        'post_status'    => 'publish',
+        'orderby'        => 'date',
+        'post__in'       => $include
+    ];
+
+    $query = new WP_Query($args);
+} else {
+
+    $args = [
+        'post_type'      => 'publications',
+        'posts_per_page' => 5,
+        'post_status'    => 'publish',
+        'orderby'        => 'date',
+    ];
+
+    $query = new WP_Query($args);
+}
+
+if ($query->have_posts()) {
+
+    ?>
+
+    <section class="sidebar__section topics">
+        <h3 class="widget-title">Актуальные научные публикации</h3>
+        <ul class="list-group list-group-flush">
+
+            <?php
+
+            while ($query->have_posts()) {
+
+                $query->the_post();
+
+            ?>
+
+                <li class="list-group-item">
+                    <a href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a>
+                </li>
+
+            <?php
+
+            }
+
+            wp_reset_postdata();
+
+            ?>
+
+        </ul>
+    </section>
+
+<?php
+
+}
+
 ?>
-
-<section class="sidebar__section topics">
-    <h3 class="widget-title">Актуальные научные публикации</h3>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-            <a href="/press-centr/news/neprodumannoe_zakonodatelstvo_delaet_advokatov_posobnikami_prestupnikov_chto_osobenno_opasno_po_delam_o_korrupcii_i_terrorizme_/">Непродуманное законодательство делает адвокатов пособниками преступников, что особенно опасно по делам о коррупции и терроризме</a>
-        </li>
-        <li class="list-group-item">
-            <a href="/press-centr/news/falshivye_generaly_podmoskovnoj_advokatury_/">Фальшивые генералы подмосковной адвокатуры</a>
-        </li>
-        <li class="list-group-item">
-            <a href="/doc/kmt.pdf">Казус Майка Тайсона. Подлежат ли уголовной ответственности современные гладиаторы наносящие вред жизни и здоровью</a>
-        </li>
-        <li class="list-group-item">
-            <a href="/nauchnye_i_uchebno_metodicheskie_trudy/nauchnye_publikacii_advokatov_kollegii/16079/">Убийства адвокатов России</a>
-        </li>
-
-        <li class="list-group-item">
-            <a href="/nauchnye_i_uchebno_metodicheskie_trudy/nauchnye_publikacii_advokatov_kollegii/16081/">НЕОБХОДИМОСТЬ РЕФОРМЫ АДВОКАТУРЫ РОССИИ</a>
-        </li>
-        <li class="list-group-item">
-            <a href="/nauchnye_i_uchebno_metodicheskie_trudy/nauchnye_publikacii_advokatov_kollegii/16092/">Демократическая терпимость чиновников и политиков к шокирующей и оскорбляющей диффамации</a>
-        </li>
-        <li class="list-group-item">
-            <a href="/nauchnye_i_uchebno_metodicheskie_trudy/nauchnye_publikacii_advokatov_kollegii/16090/">Либерализация уголовной политики составная эффективной экономики</a>
-        </li>
-        <li class="list-group-item">
-            <a href="/nauchnye_i_uchebno_metodicheskie_trudy/nauchnye_publikacii_advokatov_kollegii/16082/">Лечить нельзя помиловать</a>
-        </li>
-    </ul>
-
-</section>
 
 <section class="sidebar__section topics">
     <h2 class="h4">Книги</h2>

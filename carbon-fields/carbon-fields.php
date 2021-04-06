@@ -4,6 +4,7 @@ add_action('carbon_fields_register_fields', 'crb_attach_theme_options');
 
 function crb_attach_theme_options()
 {
+    require(dirname(__FILE__) . '/fields-theme.php');
     require(dirname(__FILE__) . '/fields-post.php');
     require(dirname(__FILE__) . '/fields-publications.php');
     require(dirname(__FILE__) . '/fields-partners.php');

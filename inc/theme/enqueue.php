@@ -28,6 +28,20 @@ function trunov_scripts()
         ],
         [
             'type'   => 'css',
+            'handle' => 'fancybox-style',
+            'src'    => $uri . '/vendor/fancybox/jquery.fancybox.css',
+            'deps'   => [],
+            'ver'    => ''
+        ],
+        [
+            'type'   => 'js',
+            'handle' => 'fancybox-script',
+            'src'    => $uri . '/vendor/fancybox/jquery.fancybox.pack.js',
+            'deps'   => ['jquery'],
+            'ver'    => ''
+        ],
+        [
+            'type'   => 'css',
             'handle' => 'slick-style',
             'src'    => $uri . '/vendor/slick/slick.css',
             'deps'   => [],

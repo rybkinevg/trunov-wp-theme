@@ -32,10 +32,36 @@ $query = new WP_Query($args);
 
                 $media = get_attached_media('image', get_the_ID());
 
+                unset($media[get_post_thumbnail_id()]);
+
         ?>
 
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                    <?php var_dump($media); ?>
+
+                    <div class="photoarchive__item">
+                        <a title="<?= get_the_title(); ?>" data-fancybox-href="<?= get_the_post_thumbnail_url(get_the_id(), 'full') ?>" rel="<?= get_the_ID() ?>" class="fancybox">
+                            <?= trunov_get_thumbnail(); ?>
+                        </a>
+                    </div>
+
+                    <?php
+
+                    foreach ($media as $img) {
+
+                        $src = $img->guid;
+
+                    ?>
+
+                        <div class="photoarchive__item--hidden">
+                            <a title="<?= get_the_title(); ?>" data-fancybox-href="<?= $src ?>" rel="<?= get_the_ID() ?>" class="fancybox"></a>
+                        </div>
+
+                    <?php
+
+                    }
+
+                    ?>
+
                 </div>
 
         <?php

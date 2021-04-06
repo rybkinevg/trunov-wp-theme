@@ -1,5 +1,7 @@
 <?php
 
+add_rewrite_rule('press-centr/page/(\d+)/?$', 'index.php?pagename=press-centr&paged=$matches[1]', 'top');
+
 $post_taxes = [
     [
         'id'   => '55',
