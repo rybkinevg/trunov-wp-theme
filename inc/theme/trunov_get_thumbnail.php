@@ -1,10 +1,10 @@
 <?php
 
-function trunov_get_thumbnail()
+function trunov_get_thumbnail($type = 'post')
 {
     $alt = 'Миниатюра записи';
 
-    if (has_post_thumbnail()) {
+    if (has_post_thumbnail() && $type == 'post') {
 
         $src = get_the_post_thumbnail_url();
         $class = 'img--cover';

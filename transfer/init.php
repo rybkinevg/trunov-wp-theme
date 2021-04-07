@@ -19,6 +19,8 @@ require(dirname(__FILE__) . '/Media_columns.php');
 require(dirname(__FILE__) . '/SOS.php');
 require(dirname(__FILE__) . '/Certificates.php');
 require(dirname(__FILE__) . '/Vacancies.php');
+
 require(dirname(__FILE__) . '/Images.php');
+require(dirname(__FILE__) . '/Links.php');
 
 Transfer::init();

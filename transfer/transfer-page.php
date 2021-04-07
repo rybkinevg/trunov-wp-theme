@@ -162,6 +162,7 @@ function print_block($args)
     echo "<hr/>";
 
     print_block(rybkinevg\trunov\Images::page_block());
+    print_block(rybkinevg\trunov\Links::page_block());
 
     ?>
 

@@ -27,7 +27,7 @@ $query = new WP_Query($args);
         ?>
 
                 <div class="parners__item">
-                    <div class="d-block w-100" style="height: 100%;">
+                    <div class="d-block w-100 p-2 h-100">
                         <a href="<?= carbon_get_post_meta(get_the_ID(), 'partners_url') ?>" target="_blank" rel="noopener noreferrer" title="<?= get_the_title(); ?>">
                             <img class='img img--contain' src='<?= get_the_post_thumbnail_url(); ?>' alt='<?= get_the_title(); ?>'>
                         </a>

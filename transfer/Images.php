@@ -44,9 +44,9 @@ class Images extends Transfer
 
             foreach ($imgs as $img) {
 
-                $img->attr['alt'] = "";
-                $img->attr['src'] = self::download_image($img->attr['src'], $post->ID);
-                $img->attr['class'] = 'aligncenter';
+                $img->setAttribute('src', self::download_image($img->attr['src'], $post->ID));
+                $img->setAttribute('class', 'aligncenter');
+                $img->setAttribute('alt', '');
             }
 
             $new_content = $html->save();
@@ -85,27 +85,9 @@ class Images extends Transfer
             $url = 'http://trunov.com/' . $url;
 
             $thumb_src = media_sideload_image($url, $post_id, $file_name, 'src');
-
-            if (is_wp_error($thumb_src)) {
-
-                $data = get_option('trunov_not_imported_images', '');
-
-                if (empty($data)) {
-
-                    $data = $url;
-                } else {
-
-                    if (in_array($url, $data))
-                        return;
-
-                    array_push($data, $url);
-                }
-
-                update_option('trunov_not_imported_images', $data);
-            }
         }
 
-        return (!is_wp_error($thumb_src)) ? $thumb_src : $url;
+        return (!is_wp_error($thumb_src)) ? wp_make_link_relative($thumb_src) : '#broken-link-img-' . $url;
     }
 
     public static function actions()

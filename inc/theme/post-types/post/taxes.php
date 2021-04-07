@@ -71,3 +71,40 @@ function create_post_taxes()
         ]
     );
 }
+
+add_action('pre_get_posts', 'alter_query');
+
+function alter_query($query)
+{
+    if (!$query->is_main_query())
+        return;
+
+    $post_taxes = [
+        'smi',
+        'archive',
+        'gromkie_dela',
+        'topics',
+        'tv',
+    ];
+
+    $tax = $query->get('taxonomy');
+
+    $paged = $query->get('paged') ?: 1;
+
+    if (in_array($tax, $post_taxes)) {
+
+        $new_query = new WP_Query([
+            'post_type'      => 'post',
+            'posts_per_page' => get_option('posts_per_page', 10),
+            'paged'          => $paged,
+            'tax_query'      => [
+                [
+                    'taxonomy' => $tax,
+                    'operator' => 'EXISTS'
+                ]
+            ]
+        ]);
+
+        $query->set('query', $query->parse_query($new_query->query));
+    }
+}

@@ -166,6 +166,7 @@ class Transfer
         Certificates::actions();
         Vacancies::actions();
         Images::actions();
+        Links::actions();
     }
 
     public static function generate_page()

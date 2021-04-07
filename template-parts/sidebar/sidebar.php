@@ -41,7 +41,7 @@ if ($terms) {
                             <div class="sidebar__thumb">
                                 <picture>
                                     <source srcset="<?= get_template_directory_uri() . '/assets/img/blank.gif' ?>" media="(max-width: 992px)">
-                                    <?= trunov_get_thumbnail(); ?>
+                                    <?= trunov_get_thumbnail('tax'); ?>
                                 </picture>
                             </div>
                         </div>

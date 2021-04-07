@@ -337,3 +337,7 @@ a {
     justify-content: space-between;
     font-size: 14px;
 }
+
+.single__content a {
+    text-decoration: underline;
+}
