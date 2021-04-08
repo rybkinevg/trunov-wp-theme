@@ -12,7 +12,7 @@ function post_taxes_filter()
             'smi',
             'archive',
             'tv',
-            'high-profile-cases',
+            'gromkie_dela',
             'topics'
         ];
 

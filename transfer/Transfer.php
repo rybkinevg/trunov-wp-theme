@@ -61,7 +61,7 @@ class Transfer
         $default = [
             'import_id'      => $post->id,
             'post_title'     => self::check_title($post->name),
-            'post_content'   => $post->text,
+            'post_content'   => $post->text ?: '',
             'post_date'      => self::check_date($post->date),
             'post_name'      => $post->alias,
             'post_author'    => 1,
@@ -167,6 +167,7 @@ class Transfer
         Vacancies::actions();
         Images::actions();
         Links::actions();
+        Views::actions();
     }
 
     public static function generate_page()

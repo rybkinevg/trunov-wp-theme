@@ -22,5 +22,6 @@ require(dirname(__FILE__) . '/Vacancies.php');
 
 require(dirname(__FILE__) . '/Images.php');
 require(dirname(__FILE__) . '/Links.php');
+require(dirname(__FILE__) . '/Views.php');
 
 Transfer::init();

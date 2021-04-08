@@ -9,8 +9,7 @@ function add_post_columns($columns)
         'title'      => 'Заголовок',
         'categories' => 'Рубрики',
         'tags'       => 'Метки',
-        'persons'    => 'Персоны',
-        'views'      => 'Просмотры'
+        'persons'    => 'Персоны'
     ];
 
     return $columns;
@@ -44,12 +43,5 @@ function fill_post_columns($column_name)
 
             echo "—";
         }
-    }
-
-    if ($column_name === 'views') {
-
-        $views = get_post_meta(get_the_ID(), 'views', true) ?: 0;
-
-        echo $views;
     }
 };

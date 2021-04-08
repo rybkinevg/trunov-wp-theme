@@ -12,15 +12,17 @@ class Images extends Transfer
 
         $query = "
             SELECT
-                `post_content`,
                 `ID`,
-                `post_title`
+                `post_title`,
+                `post_content`
             FROM
                 {$wpdb->posts}
             WHERE
                 `post_content`
             LIKE
                 '%<img%'
+            AND
+                `post_type` != 'revision'
         ";
 
         $posts = $wpdb->get_results($query);
@@ -44,9 +46,11 @@ class Images extends Transfer
 
             foreach ($imgs as $img) {
 
-                $img->setAttribute('src', self::download_image($img->attr['src'], $post->ID));
-                $img->setAttribute('class', 'aligncenter');
-                $img->setAttribute('alt', '');
+                $src = self::download_image($img->attr['src'], $post->ID);
+
+                $img->setAttribute('src', $src);
+                $img->setAttribute('class', 'mx-auto d-block');
+                $img->setAttribute('alt', 'Изображение внутри записи');
             }
 
             $new_content = $html->save();
@@ -61,10 +65,6 @@ class Images extends Transfer
 
     protected static function download_image($url, $post_id)
     {
-        require_once(ABSPATH . 'wp-admin/includes/media.php');
-        require_once(ABSPATH . 'wp-admin/includes/file.php');
-        require_once(ABSPATH . 'wp-admin/includes/image.php');
-
         $url = str_replace('\\', '/', $url);
 
         $url_to_arr = explode('/', $url);
@@ -75,6 +75,13 @@ class Images extends Transfer
         }
 
         $url = implode('/', $url_to_arr);
+
+        $basename = basename(parse_url($url)['path']);
+
+        if ($attachment_id  = is_attach_exists($basename)) {
+
+            return (wp_make_link_relative(wp_get_attachment_url($attachment_id)));
+        }
 
         $file_name = "post-img-{$post_id}";
 
@@ -87,7 +94,7 @@ class Images extends Transfer
             $thumb_src = media_sideload_image($url, $post_id, $file_name, 'src');
         }
 
-        return (!is_wp_error($thumb_src)) ? wp_make_link_relative($thumb_src) : '#broken-link-img-' . $url;
+        return (is_wp_error($thumb_src)) ? $url . '?fail-import' : wp_make_link_relative($thumb_src);
     }
 
     public static function actions()

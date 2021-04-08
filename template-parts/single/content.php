@@ -5,10 +5,24 @@
             <i class="fa fa-calendar me-2" aria-hidden="true"></i>
             <span><?= get_the_date('j F Y'); ?></span>
         </div>
-        <div class="single__prop">
-            <i class="fa fa-eye me-2" aria-hidden="true"></i>
-            <span>Просмотры</span>
-        </div>
+
+        <?php
+
+        if (get_post_type() == 'post') {
+
+        ?>
+
+            <div class="single__prop">
+                <i class="fa fa-eye me-2" aria-hidden="true"></i>
+                <span><?= pvc_get_post_views(); ?></span>
+            </div>
+
+        <?php
+
+        }
+
+        ?>
+
     </div>
     <div class="single__content">
         <?= get_the_content(); ?>
