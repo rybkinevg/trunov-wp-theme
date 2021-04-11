@@ -36,7 +36,7 @@ $query = new WP_Query($args);
 
         ?>
 
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
 
                     <div class="photoarchive__item">
                         <a title="<?= get_the_title(); ?>" data-fancybox-href="<?= get_the_post_thumbnail_url(get_the_id(), 'full') ?>" rel="<?= get_the_ID() ?>" class="fancybox">

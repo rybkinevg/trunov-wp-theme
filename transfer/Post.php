@@ -44,7 +44,16 @@ class Post extends Transfer
         foreach ($posts as $post) {
 
             $args = [
-                'post_type' => self::$post_type
+                'ID'             => $post->id,
+                'post_author'    => 1,
+                'post_date'      => parent::check_date($post->date),
+                'post_title'     => self::check_title($post->name),
+                'post_content'   => $post->text ?: '',
+                'post_excerpt'   => $post->anons ?: '',
+                'post_status'    => ($post->active == 1) ? "publish" : "private",
+                'post_name'      => $post->alias,
+                'post_type'      => 'post',
+                'comment_status' => 'closed'
             ];
 
             // Алиас этой новости превышает ограничение VARCHAR(200)
@@ -53,17 +62,14 @@ class Post extends Transfer
                 $args['post_name'] = 'Синайская авиакатастрофа';
             }
 
-            $data = parent::generate_args($post, $args);
+            // $inserted = $wpdb->insert(
+            //     $wpdb->posts,
+            //     $args
+            // );
 
-            $data['ID'] = $post->id;
-
-            unset($data['import_id']);
-
-            unset($data['meta_input']);
-
-            $inserted = $wpdb->insert(
+            $inserted = $wpdb->replace(
                 $wpdb->posts,
-                $data
+                $args
             );
 
             if (!$inserted) {
@@ -75,13 +81,14 @@ class Post extends Transfer
                 self::show_error(null, $message);
             }
 
-            $cat_id = get_cat_ID('Новости СМИ');
+            if ($post->parent_id == '114')
+                $cat_id = get_cat_ID('Новости СМИ');
 
             if ($post->parent_id == '115')
                 $cat_id = get_cat_ID('Новости');
 
             if ($post->parent_id == '14820')
-                wp_set_post_tags($wpdb->insert_id, 'Анонс', true);
+                $cat_id = get_cat_ID('Анонсы');
 
             $cat = wp_set_post_categories($wpdb->insert_id, $cat_id);
 
@@ -284,8 +291,8 @@ class Post extends Transfer
 
                     wp_set_post_terms(
                         $post->id,
-                        [get_term_by('name', '«Громкий плагиат»', 'high-profile-cases')->term_id],
-                        'high-profile-cases',
+                        [get_term_by('name', '«Громкий плагиат»', 'gromkie_dela')->term_id],
+                        'gromkie_dela',
                         true
                     );
 

@@ -2,8 +2,8 @@
 
 $args = [
     'post_type'      => 'post',
-    'posts_per_page' => 5,
-    'tag'            => sanitize_title('Важное') . "," . sanitize_title('Анонс')
+    'posts_per_page' => 14,
+    'tag'            => sanitize_title('Важное')
 ];
 
 $query = new WP_Query($args);
@@ -16,6 +16,18 @@ $query = new WP_Query($args);
 
     <div class="index-news">
 
+        <div class="index-news__item">
+            <div class="d-block w-100 h-100">
+                <img src="<?= get_template_directory_uri() . '/assets/img/gonorar.jpg' ?>" alt="" class="img--cover">
+            </div>
+            <div class="index-news__caption">
+                <h5><a href="#">Гонорар успеха</a></h5>
+                <p class="d-none d-md-block">
+                    Нанимайте наших лучших адвокатов и юристов за ГОНОРАР УСПЕХА
+                </p>
+            </div>
+        </div>
+
         <?php
 
         if ($query->have_posts()) {
@@ -27,7 +39,7 @@ $query = new WP_Query($args);
         ?>
 
                 <div class="index-news__item">
-                    <div class="d-block w-100">
+                    <div class="d-block w-100 h-100">
                         <?= trunov_get_thumbnail(); ?>
                     </div>
                     <div class="index-news__caption">

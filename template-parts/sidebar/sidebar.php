@@ -11,7 +11,7 @@ if ($sidebar_topics) {
     }
 
     $args = [
-        'taxonomy'      => ['topics'],
+        'taxonomy'      => ['topics', 'gromkie_dela'],
         'include'       => $include
     ];
 
@@ -41,14 +41,25 @@ if ($terms) {
                             <div class="sidebar__thumb">
                                 <picture>
                                     <source srcset="<?= get_template_directory_uri() . '/assets/img/blank.gif' ?>" media="(max-width: 992px)">
-                                    <?= trunov_get_thumbnail('tax'); ?>
+                                    <?php
+
+                                    if ($thumb_id = get_term_meta($term->term_id, '_thumbnail_id', true)) {
+
+                                        $src = wp_get_attachment_image_url($thumb_id);
+                                        $class = 'img--contain';
+                                        $alt = 'Миниатюра записи';
+
+                                        echo "<img class='img {$class}' src='{$src}' alt='{$alt}'>";
+                                    }
+
+                                    ?>
                                 </picture>
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="sidebar__text card-body">
                                 <h5 class="card-title h6 m-0">
-                                    <a href="<?= wp_make_link_relative(get_term_link($term->term_id, 'topics')); ?>"><?= $term->name ?></a>
+                                    <a href="<?= wp_make_link_relative(get_term_link($term->term_id)); ?>"><?= $term->name ?></a>
                                 </h5>
                             </div>
                         </div>
@@ -72,12 +83,12 @@ $sidebar_news = [
     'Новости'     => [
         'category_name' => 'news'
     ],
+    'Анонсы' => [
+        'category_name' => 'anons'
+    ],
     'Новости СМИ' => [
         'category_name' => 'news_smi'
-    ],
-    'Анонсы'      => [
-        'tag' => sanitize_title('Анонс')
-    ],
+    ]
 ];
 
 foreach ($sidebar_news as $label => $news) {
@@ -86,7 +97,7 @@ foreach ($sidebar_news as $label => $news) {
 
         $args = [
             'post_type'      => 'post',
-            'posts_per_page' => 5,
+            'posts_per_page' => 10,
             'post_status'    => 'publish',
             'orderby'        => 'date'
         ];

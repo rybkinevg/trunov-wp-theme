@@ -1,30 +1,8 @@
 <article class="single__item">
-    <h2 class="single__title"><?= get_the_title(); ?></h2>
-    <div class="single__props text-muted my-3">
-        <div class="single__prop">
-            <i class="fa fa-calendar me-2" aria-hidden="true"></i>
-            <span><?= get_the_date('j F Y'); ?></span>
-        </div>
+    <h2 class="single__title mb-4"><?= get_the_title(); ?></h2>
 
-        <?php
-
-        if (get_post_type() == 'post') {
-
-        ?>
-
-            <div class="single__prop">
-                <i class="fa fa-eye me-2" aria-hidden="true"></i>
-                <span><?= pvc_get_post_views(); ?></span>
-            </div>
-
-        <?php
-
-        }
-
-        ?>
-
-    </div>
     <div class="single__content">
-        <?= get_the_content(); ?>
+        <?php the_content(); ?>
     </div>
+
 </article>

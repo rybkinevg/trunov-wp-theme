@@ -29,6 +29,7 @@ function services_register()
         ],
         'description'         => '',
         'public'              => true,
+        'show_in_nav_menus'   => true,
         'show_in_menu'        => null,
         'show_in_rest'        => null,
         'rest_base'           => null,

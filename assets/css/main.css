@@ -183,6 +183,8 @@ a {
 
 .slick-arrow {
     z-index: 1;
+    width: 26px;
+    height: 26px;
 }
 
 .slick-prev {
@@ -305,6 +307,10 @@ a {
     color: #838282;
 }
 
+.footer-services__list {
+    font-size: 12px;
+}
+
 /* ARCHIVE */
 
 .archive__list {
@@ -316,6 +322,7 @@ a {
 .archive__img {
     display: block;
     height: 100%;
+    max-height: 260px;
 }
 
 .archive .card-body {
@@ -340,4 +347,63 @@ a {
 
 .single__content a {
     text-decoration: underline;
+}
+
+.single__content img {
+    max-width: 100% !important;
+}
+
+.single__content iframe {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.single__content object {
+    display: none;
+}
+
+/* PAGE */
+
+.page__content img {
+    max-width: 100% !important;
+}
+
+/* BREADCRUMBS */
+
+.breadcrumb-item a {
+    color: rgba(0,0,0,.55);
+}
+
+.breadcrumb-item a:hover {
+    color: rgba(0,0,0,.9);
+}
+
+/* SHARE */
+
+.share {
+    display: flex;
+    align-items: center;
+}
+
+.share__item {
+    width: 25%;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 20px;
+}
+
+.share__item:not(:last-child) {
+    border-right: 1px solid #dee2e6;
+}
+
+/* TAXES AND META */
+
+.single__tax {
+    padding: 10px;
+}
+
+.single__terms {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }

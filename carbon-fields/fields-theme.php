@@ -134,6 +134,10 @@ Container::make(
                 [
                     'type'     => 'term',
                     'taxonomy' => 'topics',
+                ],
+                [
+                    'type'     => 'term',
+                    'taxonomy' => 'gromkie_dela',
                 ]
             ]
         )->set_max(

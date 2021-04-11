@@ -7,7 +7,7 @@ function register_court()
     $post_type = 'court';
 
     $rewrite = [
-        'slug'     => 'rekvizits_sud',
+        'slug'     => 'information/rekvizits_sud',
         'in_front' => true
     ];
 

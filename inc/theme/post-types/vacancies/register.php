@@ -6,6 +6,11 @@ function register_vacancies()
 {
     $post_type = 'vacancies';
 
+    $rewrite = [
+        'slug'     => 'vacancy',
+        'in_front' => true
+    ];
+
     $args = [
         'label'  => null,
         'labels' => [
@@ -33,7 +38,7 @@ function register_vacancies()
         'supports'            => ['title', 'editor'],
         'taxonomies'          => [],
         'has_archive'         => true,
-        'rewrite'             => true,
+        'rewrite'             => $rewrite,
         'query_var'           => true,
     ];
 

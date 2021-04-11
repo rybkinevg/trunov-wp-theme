@@ -23,9 +23,9 @@ function fill_advocats_columns($column_name)
         if (!has_post_thumbnail())
             echo "—";
 
-        $thumbnail = get_the_post_thumbnail(get_the_ID(), 'thumbnail');
+        $src = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
-        echo $thumbnail;
+        echo "<img src='{$src}' width='100' height='100' alt=' style='border-radius:4px;'>";
     }
 
     if ($column_name === 'office') {

@@ -46,6 +46,8 @@ function create_post_taxes()
             'hierarchical'      => false,
             'meta_box_cb'       => 'post_categories_meta_box',
             'show_admin_column' => false,
+            'show_in_nav_menus' => true,
+            'show_ui'           => true,
             'rewrite' => [
                 'slug' => 'press-centr/' . $tax['slug'],
                 'with_front' => false

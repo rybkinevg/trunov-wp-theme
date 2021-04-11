@@ -20,6 +20,7 @@ $site_socials = carbon_get_theme_option('site-socials');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="<?= get_template_directory_uri() . '/favicon.ico' ?>" type="image/x-icon" />
     <?php wp_head(); ?>
 </head>
 
@@ -30,7 +31,8 @@ $site_socials = carbon_get_theme_option('site-socials');
         <header class="site__item header d-none d-lg-block">
             <div class="d-flex flex-wrap justify-content-between align-items-center py-3">
                 <a href="/" class="text-decoration-none">
-                    <img src="<?= get_template_directory_uri() . '/assets/img/logo.png' ?>" alt="">
+                    <img src="<?= get_template_directory_uri() . '/assets/img/logo.png' ?>" alt="" width="120px" height="120px">
+                    <img src="<?= get_template_directory_uri() . '/assets/img/Legal500.png' ?>" alt="" width="120px" height="120px">
                 </a>
                 <div class="header__brand">
                     <h1><?= $site_title; ?></h1>
@@ -86,7 +88,7 @@ $site_socials = carbon_get_theme_option('site-socials');
 
                                 ?>
 
-                                    <a class="social__link" href="<?= $social['site-social-link'] ?>">
+                                    <a class="social__link" target="_blank" rel="noopener noreferrer" href="<?= $social['site-social-link'] ?>">
                                         <i class="<?= "fa fa-{$social['site-social']}" ?>" aria-hidden="true"></i>
                                     </a>
 

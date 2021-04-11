@@ -45,26 +45,26 @@ function register_publications_categories()
         [
             'name' => 'Список научных и учебно-методических трудов адвоката Айвар Людмилы Константиновны',
             'id'   => '15539',
-            'slug' => 'spisok_nauchnyh_i_uchebno-metodicheskih_trudov_advokata_trunova'
+            'slug' => 'spisok_nauchnyh_i_uchebno-metodicheskih_trudov_advokata_ajvar'
         ],
         [
             'name' => 'Список научных и учебно-методических трудов адвоката Трунова Игоря Леонидовича',
             'id'   => '15010',
-            'slug' => 'spisok_nauchnyh_i_uchebno-metodicheskih_trudov_advokata_ajvar'
+            'slug' => 'spisok_nauchnyh_i_uchebno-metodicheskih_trudov_advokata_trunova'
         ],
     ];
 
-    foreach ($taxes as $tax) {
+    // foreach ($taxes as $tax) {
 
-        wp_insert_term(
-            $tax['name'],
-            $tax_name,
-            [
-                'slug'        => $tax['slug'],
-                'description' => $tax['id']
-            ]
-        );
-    }
+    //     wp_insert_term(
+    //         $tax['name'],
+    //         $tax_name,
+    //         [
+    //             'slug'        => $tax['slug'],
+    //             'description' => $tax['id']
+    //         ]
+    //     );
+    // }
 }
 
 // Таксономия: Типы

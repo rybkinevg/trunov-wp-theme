@@ -1,10 +1,15 @@
 jQuery(document).ready(function ($) {
 
-    $('.index-news').slick();
+    $('.index-news').slick({
+        autoplay: true,
+        autoplaySpeed: 3000,
+    });
 
     $('.partners').slick({
         slidesToShow: 4,
         slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
         responsive: [
             {
                 breakpoint: 1300,

@@ -7,7 +7,7 @@ function register_for_lawyer()
     $post_type = 'for_lawyer';
 
     $rewrite = [
-        'slug'     => 'for_advocats',
+        'slug'     => 'information/for_advocats',
         'in_front' => true
     ];
 
