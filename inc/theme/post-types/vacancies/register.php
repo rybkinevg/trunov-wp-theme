@@ -35,7 +35,7 @@ function register_vacancies()
         'menu_position'       => null,
         'menu_icon'           => 'dashicons-search',
         'hierarchical'        => false,
-        'supports'            => ['title', 'editor'],
+        'supports'            => ['title', 'editor', 'excerpt'],
         'taxonomies'          => [],
         'has_archive'         => true,
         'rewrite'             => $rewrite,

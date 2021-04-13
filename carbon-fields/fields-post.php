@@ -49,3 +49,16 @@ Container::make('post_meta', 'Дополнительные поля')
                 ->set_help_text('Выберите одну или несколько услуг, упомянутых в новости')
         ]
     );
+
+Container::make('post_meta', 'Видимость новости')
+    ->show_on_post_type('post')
+    ->set_context('side')
+    ->add_fields(
+        [
+            Field::make('select', 'show_on_the_main', 'Статус новости на главной')
+                ->add_options([
+                    'show' => 'Показывать',
+                    'hide' => 'Не показывать',
+                ]),
+        ]
+    );

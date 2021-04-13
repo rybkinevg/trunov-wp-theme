@@ -36,7 +36,7 @@ function services_register()
         'menu_position'       => null,
         'menu_icon'           => 'dashicons-megaphone',
         'hierarchical'        => true,
-        'supports'            => ['title', 'editor', 'page-attributes', 'thumbnail'],
+        'supports'            => ['title', 'editor', 'page-attributes', 'thumbnail', 'excerpt'],
         'taxonomies'          => [],
         'has_archive'         => true,
         'rewrite'             => $rewrite,

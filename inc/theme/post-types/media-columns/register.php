@@ -36,7 +36,7 @@ function register_media_columns()
         'menu_position'       => null,
         'menu_icon'           => 'dashicons-rss',
         'hierarchical'        => false,
-        'supports'            => ['title', 'editor'],
+        'supports'            => ['title', 'editor', 'excerpt'],
         'taxonomies'          => [],
         'has_archive'         => true,
         'rewrite'             => $rewrite,

@@ -30,7 +30,7 @@ function register_sos()
         'menu_position'       => null,
         'menu_icon'           => 'dashicons-sos',
         'hierarchical'        => false,
-        'supports'            => ['title', 'editor', 'thumbnail'],
+        'supports'            => ['title', 'editor', 'thumbnail', 'excerpt'],
         'taxonomies'          => [],
         'has_archive'         => true,
         'rewrite'             => true,

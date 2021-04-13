@@ -44,3 +44,63 @@ require_once get_template_directory() . '/inc/autoload.php';
 require_once get_template_directory() . '/transfer/init.php';
 
 require_once get_template_directory() . '/carbon-fields/carbon-fields.php';
+
+function set_sort()
+{
+    global $wpdb;
+
+    $query = "
+        SELECT
+            ID
+        FROM
+            {$wpdb->posts}
+        WHERE
+            `post_type` = 'post'
+        OR
+            `post_type` = 'advocats'
+        OR
+            `post_type` = 'juristy'
+    ";
+
+    $results = $wpdb->get_results($query);
+
+    if ($results) {
+
+        foreach ($results as $post) {
+
+            $query = "
+                SELECT
+                    `meta_value`
+                FROM
+                    {$wpdb->postmeta}
+                WHERE
+                    `post_id` = '{$post->ID}'
+                AND
+                    `meta_key` = '_sort'
+            ";
+
+            $sort = $wpdb->get_var($query);
+
+            if (is_null($sort)) {
+
+                $default = [
+                    'post_id'    => $post->ID,
+                    'meta_key'   => '_sort',
+                    'meta_value' => '10'
+                ];
+
+                $inserted_id = $wpdb->insert(
+                    $wpdb->postmeta,
+                    $default
+                );
+
+                if (!$inserted_id) {
+
+                    wp_die("Ошибка проставления порядка сортировки для поста - {$post->ID}");
+                }
+            }
+        }
+    }
+}
+
+// set_sort();

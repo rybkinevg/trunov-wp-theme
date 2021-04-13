@@ -171,4 +171,41 @@ Container::make(
             'Выбранные темы будут отображаться в разделе "Актуальные научные публикации" в сайдбаре, если не указывать, то выведуться последние публикации'
         )
     ]
+)->add_tab(
+    'Главная страница',
+    [
+        Field::make(
+            'complex',
+            'index-slider',
+            'Слайдер на главной'
+        )->setup_labels(
+            [
+                'plural_name'   => 'слайды',
+                'singular_name' => 'слайд',
+            ]
+        )->add_fields(
+            [
+                Field::make(
+                    'text',
+                    'index-slider-title',
+                    'Заголовок'
+                ),
+                Field::make(
+                    'text',
+                    'index-slider-desc',
+                    'Описание'
+                ),
+                Field::make(
+                    'text',
+                    'index-slider-link',
+                    'Ссылка'
+                ),
+                Field::make(
+                    'image',
+                    'index-slider-img',
+                    'Изображение записи'
+                )->set_value_type('url'),
+            ]
+        )
+    ]
 );

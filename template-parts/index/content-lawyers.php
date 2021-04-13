@@ -7,34 +7,52 @@ unset($args);
 
 if ($post_type == 'advocats') {
 
+    // $args = [
+    //     'post_type'      => $post_type,
+    //     'posts_per_page' => -1,
+    //     'post_status'    => 'publish',
+    //     'meta_query'     => [
+    //         'relation' => 'AND',
+    //         'head'     => [
+    //             'key'     => 'status',
+    //             'value'   => 'head',
+    //             'compare' => '!='
+    //         ],
+    //         [
+    //             'relation' => 'OR',
+    //             'rus'      => [
+    //                 'key'     => 'office',
+    //                 'value'   => 0,
+    //                 'compare' => '='
+    //             ],
+    //             'offices'      => [
+    //                 'key'     => 'office',
+    //                 'value'   => 0,
+    //                 'compare' => '!='
+    //             ],
+    //         ]
+    //     ],
+    //     'orderby' => [
+    //         'rus'     => 'ASC',
+    //         'offices' => 'ASC',
+    //     ]
+    // ];
+
     $args = [
         'post_type'      => $post_type,
         'posts_per_page' => -1,
         'post_status'    => 'publish',
+        'meta_key'       => '_sort',
         'meta_query'     => [
             'relation' => 'AND',
             'head'     => [
                 'key'     => 'status',
                 'value'   => 'head',
                 'compare' => '!='
-            ],
-            [
-                'relation' => 'OR',
-                'rus'      => [
-                    'key'     => 'office',
-                    'value'   => 0,
-                    'compare' => '='
-                ],
-                'offices'      => [
-                    'key'     => 'office',
-                    'value'   => 0,
-                    'compare' => '!='
-                ],
             ]
         ],
         'orderby' => [
-            'rus' => 'ASC',
-            'offices' => 'ASC',
+            'meta_value' => 'ASC',
         ]
     ];
 } else {
@@ -43,6 +61,11 @@ if ($post_type == 'advocats') {
         'post_type'      => $post_type,
         'posts_per_page' => -1,
         'post_status'    => 'publish',
+        'meta_key'       => '_sort',
+        'orderby'        => [
+            'meta_value' => 'ASC',
+            'date'       => 'DESC'
+        ]
     ];
 }
 

@@ -35,7 +35,7 @@ function register_court()
         'menu_position'       => null,
         'menu_icon'           => 'dashicons-bank',
         'hierarchical'        => false,
-        'supports'            => ['title', 'editor', 'thumbnail', 'custom-fields'],
+        'supports'            => ['title', 'editor', 'thumbnail', 'excerpt'],
         'taxonomies'          => [],
         'has_archive'         => true,
         'rewrite'             => $rewrite,

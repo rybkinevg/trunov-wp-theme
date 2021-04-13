@@ -39,7 +39,7 @@ function register_publications()
         'menu_position'       => null,
         'menu_icon'           => 'dashicons-welcome-learn-more',
         'hierarchical'        => false,
-        'supports'            => ['title', 'editor'],
+        'supports'            => ['title', 'editor', 'excerpt'],
         'taxonomies'          => [],
         'has_archive'         => 'nauchnye_i_uchebno_metodicheskie_trudy',
         'rewrite'             => true,

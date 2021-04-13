@@ -30,7 +30,7 @@ function register_advocats()
         'menu_position'       => null,
         'menu_icon'           => 'dashicons-businessman',
         'hierarchical'        => false,
-        'supports'            => ['title', 'editor', 'thumbnail'],
+        'supports'            => ['title', 'editor', 'thumbnail', 'excerpt'],
         'has_archive'         => true,
         'rewrite'             => true,
         'query_var'           => true,

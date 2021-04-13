@@ -35,7 +35,7 @@ function register_for_lawyer()
         'menu_position'       => null,
         'menu_icon'           => 'dashicons-portfolio',
         'hierarchical'        => false,
-        'supports'            => ['title', 'editor', 'thumbnail'],
+        'supports'            => ['title', 'editor', 'thumbnail', 'excerpt'],
         'taxonomies'          => [],
         'has_archive'         => true,
         'rewrite'             => $rewrite,

@@ -99,7 +99,23 @@ foreach ($sidebar_news as $label => $news) {
             'post_type'      => 'post',
             'posts_per_page' => 10,
             'post_status'    => 'publish',
-            'orderby'        => 'date'
+            'meta_key'       => '_sort',
+            'orderby'        => [
+                'meta_value' => 'ASC',
+                'date'       => 'DESC'
+            ],
+            'meta_query'     => [
+                'relation' => 'OR',
+                [
+                    'key'     => 'show_on_the_main',
+                    'value'   => 'hide',
+                    'compare' => '!=',
+                ],
+                [
+                    'key'     => 'show_on_the_main',
+                    'compare' => 'NOT EXISTS',
+                ]
+            ]
         ];
 
         $args[$key] = $value;
