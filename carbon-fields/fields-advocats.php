@@ -22,69 +22,75 @@ foreach ($posts as $post) {
 
 wp_reset_postdata();
 
-Container::make('post_meta', 'Дополнительные поля')
-    ->show_on_post_type('advocats')
-    ->add_fields(
-        [
-            Field::make('select', 'office', 'Представительство')
-                ->add_options($offices_arr)
-                ->set_default_value(0)
-                ->set_help_text('Выберите представительство'),
-        ]
-    );
+Container::make(
+    'post_meta',
+    'Additional fields'
+)->show_on_post_type(
+    'advocats'
+)->add_fields(
+    [
+        Field::make('select', 'office', 'Представительство')
+            ->add_options($offices_arr)
+            ->set_default_value(0)
+            ->set_help_text('Выберите представительство'),
+    ]
+);
 
-Container::make('post_meta', 'Информация о статусе')
-    ->show_on_post_type('advocats')
-    ->add_fields(
-        [
-            Field::make('select', 'status', 'Статус адвоката')
-                ->add_options(
+Container::make(
+    'post_meta',
+    'Status information'
+)->show_on_post_type(
+    'advocats'
+)->add_fields(
+    [
+        Field::make('select', 'status', 'Статус адвоката')
+            ->add_options(
+                [
+                    'staff' => 'Член коллегии',
+                    'head'  => 'Глава коллегии'
+                ]
+            )
+            ->set_default_value('staff')
+            ->set_help_text('Выберите статус адвоката, если выбран статус "Глава коллегии", то откроется доступ к заполнению следующих полей'),
+        Field::make('text', 'position', 'Должность')
+            ->set_conditional_logic(
+                [
                     [
-                        'staff' => 'Член коллегии',
-                        'head'  => 'Глава коллегии'
+                        'field' => 'status',
+                        'value' => 'head',
                     ]
-                )
-                ->set_default_value('staff')
-                ->set_help_text('Выберите статус адвоката, если выбран статус "Глава коллегии", то откроется доступ к заполнению следующих полей'),
-            Field::make('text', 'position', 'Должность')
-                ->set_conditional_logic(
+                ]
+            ),
+        Field::make('textarea', 'speech', 'Цитата, речь или приветсвенное слово')
+            ->set_conditional_logic(
+                [
                     [
-                        [
-                            'field' => 'status',
-                            'value' => 'head',
-                        ]
+                        'field' => 'status',
+                        'value' => 'head',
                     ]
-                ),
-            Field::make('textarea', 'speech', 'Цитата, речь или приветсвенное слово')
-                ->set_conditional_logic(
+                ]
+            ),
+        Field::make('complex', 'extra', 'Дополнительные ссылки, материалы')
+            ->add_fields(
+                [
+                    Field::make('select', 'title', 'Название')
+                        ->set_options(
+                            [
+                                'publications' => 'Научные публикации',
+                                'tv'           => 'Телевидение',
+                                'actual'       => 'Актуальные дела'
+                            ]
+                        ),
+                    Field::make('text', 'link', 'Ссылка'),
+                ]
+            )
+            ->set_conditional_logic(
+                [
                     [
-                        [
-                            'field' => 'status',
-                            'value' => 'head',
-                        ]
+                        'field' => 'status',
+                        'value' => 'head',
                     ]
-                ),
-            Field::make('complex', 'extra', 'Дополнительные ссылки, материалы')
-                ->add_fields(
-                    [
-                        Field::make('select', 'title', 'Название')
-                            ->set_options(
-                                [
-                                    'publications' => 'Научные публикации',
-                                    'tv'           => 'Телевидение',
-                                    'actual'       => 'Актуальные дела'
-                                ]
-                            ),
-                        Field::make('text', 'link', 'Ссылка'),
-                    ]
-                )
-                ->set_conditional_logic(
-                    [
-                        [
-                            'field' => 'status',
-                            'value' => 'head',
-                        ]
-                    ]
-                )
-        ]
-    );
+                ]
+            )
+    ]
+);

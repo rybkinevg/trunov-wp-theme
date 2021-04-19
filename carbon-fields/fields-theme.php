@@ -7,6 +7,8 @@ use Carbon_Fields\Field;
 
 Container::make(
     'theme_options',
+    'Theme options'
+)->set_page_menu_title(
     'Настройки темы'
 )->add_tab(
     'Шапка сайта',

@@ -86,7 +86,7 @@ function set_sort()
                 $default = [
                     'post_id'    => $post->ID,
                     'meta_key'   => '_sort',
-                    'meta_value' => '10'
+                    'meta_value' => '100'
                 ];
 
                 $inserted_id = $wpdb->insert(

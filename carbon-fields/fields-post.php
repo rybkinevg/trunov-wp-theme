@@ -37,28 +37,40 @@ foreach ($posts as $post) {
 
 wp_reset_postdata();
 
-Container::make('post_meta', 'Дополнительные поля')
-    ->show_on_post_type('post')
-    ->add_fields(
-        [
-            Field::make('multiselect', 'persons', 'Персоны')
-                ->set_options($person_arr)
-                ->set_help_text('Выберите одного или несколько адвокатов, упомянутых в новости'),
-            Field::make('multiselect', 'services', 'Услуги')
-                ->set_options($services_arr)
-                ->set_help_text('Выберите одну или несколько услуг, упомянутых в новости')
-        ]
-    );
+Container::make(
+    'post_meta',
+    'Additional fields'
+)->show_on_post_type(
+    'post'
+)->add_fields(
+    [
+        Field::make('multiselect', 'persons', 'Персоны')
+            ->set_options($person_arr)
+            ->set_help_text('Выберите одного или несколько адвокатов, упомянутых в новости'),
+        Field::make('multiselect', 'services', 'Услуги')
+            ->set_options($services_arr)
+            ->set_help_text('Выберите одну или несколько услуг, упомянутых в новости')
+    ]
+);
 
-Container::make('post_meta', 'Видимость новости')
-    ->show_on_post_type('post')
-    ->set_context('side')
-    ->add_fields(
-        [
-            Field::make('select', 'show_on_the_main', 'Статус новости на главной')
-                ->add_options([
-                    'show' => 'Показывать',
-                    'hide' => 'Не показывать',
-                ]),
-        ]
-    );
+Container::make(
+    'post_meta',
+    'Post visibility'
+)->show_on_post_type(
+    'post'
+)->set_context(
+    'side'
+)->add_fields(
+    [
+        Field::make(
+            'select',
+            'show_on_the_main',
+            'Статус новости на главной'
+        )->add_options(
+            [
+                'show' => 'Показывать',
+                'hide' => 'Не показывать',
+            ]
+        ),
+    ]
+);
