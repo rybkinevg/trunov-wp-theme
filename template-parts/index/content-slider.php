@@ -44,7 +44,7 @@ $added_news = carbon_get_theme_option('index-slider') ?: null;
 
                             ?>
 
-                                <source srcset="<?= $news['index-slider-mobimg'] ?>" media="(max-width: 768px)">
+                                <source srcset="<?= wp_make_link_relative($news['index-slider-mobimg']) ?>" media="(max-width: 768px)">
 
                             <?php
 
@@ -52,7 +52,7 @@ $added_news = carbon_get_theme_option('index-slider') ?: null;
 
                             ?>
 
-                            <img class="img img--cover" src="<?= $news['index-slider-img'] ?>" alt="Миниатюра записи">
+                            <img class="img img--cover" src="<?= wp_make_link_relative($news['index-slider-img']) ?>" alt="Миниатюра записи">
                         </picture>
                     </div>
                     <div class="index-news__caption">
