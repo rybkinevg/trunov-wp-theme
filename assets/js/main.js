@@ -30,6 +30,7 @@ jQuery(document).ready(function ($) {
 
     $(".fancybox").fancybox({
         openEffect: 'none',
-        closeEffect: 'none'
+        closeEffect: 'none',
+        title: null
     });
 });

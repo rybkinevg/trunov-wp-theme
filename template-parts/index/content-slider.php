@@ -36,7 +36,24 @@ $added_news = carbon_get_theme_option('index-slider') ?: null;
 
                 <div class="index-news__item">
                     <div class="d-block w-100 h-100">
-                        <img class="img img--cover" src="<?= $news['index-slider-img'] ?>" alt="Миниатюра записи">
+                        <picture>
+
+                            <?php
+
+                            if ($news['index-slider-mobimg']) {
+
+                            ?>
+
+                                <source srcset="<?= $news['index-slider-mobimg'] ?>" media="(max-width: 768px)">
+
+                            <?php
+
+                            }
+
+                            ?>
+
+                            <img class="img img--cover" src="<?= $news['index-slider-img'] ?>" alt="Миниатюра записи">
+                        </picture>
                     </div>
                     <div class="index-news__caption">
                         <h5><a href="<?= $news['index-slider-link'] ?>"><?= $news['index-slider-title'] ?></a></h5>

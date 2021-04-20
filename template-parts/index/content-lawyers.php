@@ -7,37 +7,6 @@ unset($args);
 
 if ($post_type == 'advocats') {
 
-    // $args = [
-    //     'post_type'      => $post_type,
-    //     'posts_per_page' => -1,
-    //     'post_status'    => 'publish',
-    //     'meta_query'     => [
-    //         'relation' => 'AND',
-    //         'head'     => [
-    //             'key'     => 'status',
-    //             'value'   => 'head',
-    //             'compare' => '!='
-    //         ],
-    //         [
-    //             'relation' => 'OR',
-    //             'rus'      => [
-    //                 'key'     => 'office',
-    //                 'value'   => 0,
-    //                 'compare' => '='
-    //             ],
-    //             'offices'      => [
-    //                 'key'     => 'office',
-    //                 'value'   => 0,
-    //                 'compare' => '!='
-    //             ],
-    //         ]
-    //     ],
-    //     'orderby' => [
-    //         'rus'     => 'ASC',
-    //         'offices' => 'ASC',
-    //     ]
-    // ];
-
     $args = [
         'post_type'      => $post_type,
         'posts_per_page' => -1,
@@ -133,4 +102,26 @@ $query = new WP_Query($args);
         ?>
 
     </div>
+
+    <?php
+
+    if ($post_type == 'advocats') {
+
+    ?>
+
+        <ul class="list-group list-group">
+            <li class="list-group-item" style="max-width: 330px;">
+                <a href="/nauchnye_i_uchebno_metodicheskie_trudy/nauchnye_publikacii_advokatov_kollegii/">
+                    <i class="fa fa-pencil-square-o me-2" aria-hidden="true"></i>
+                    Научные статьи адвокатов коллегии
+                </a>
+            </li>
+        </ul>
+
+    <?php
+
+    }
+
+    ?>
+
 </section>
