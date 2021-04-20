@@ -37,7 +37,7 @@ if ($terms) {
             <div class="card-holder">
                 <article class="card">
                     <div class="row g-0">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <div class="sidebar__thumb">
                                 <picture>
                                     <source srcset="<?= get_template_directory_uri() . '/assets/img/blank.gif' ?>" media="(max-width: 992px)">
@@ -45,8 +45,8 @@ if ($terms) {
 
                                     if ($thumb_id = get_term_meta($term->term_id, '_thumbnail_id', true)) {
 
-                                        $src = wp_get_attachment_image_url($thumb_id);
-                                        $class = 'img--contain';
+                                        $src = wp_get_attachment_image_url($thumb_id, 'full');
+                                        $class = 'img--cover';
                                         $alt = 'Миниатюра записи';
 
                                         echo "<img class='img {$class}' src='{$src}' alt='{$alt}'>";
@@ -56,7 +56,7 @@ if ($terms) {
                                 </picture>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="sidebar__text card-body">
                                 <h5 class="card-title h6 m-0">
                                     <a href="<?= wp_make_link_relative(get_term_link($term->term_id)); ?>"><?= $term->name ?></a>
@@ -136,7 +136,7 @@ foreach ($sidebar_news as $label => $news) {
                     <div class="card-holder">
                         <article class="card">
                             <div class="row g-0">
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <div class="sidebar__thumb">
                                         <picture>
                                             <source srcset="<?= get_template_directory_uri() . '/assets/img/blank.gif' ?>" media="(max-width: 992px)">
@@ -144,7 +144,7 @@ foreach ($sidebar_news as $label => $news) {
                                         </picture>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <div class="card-body">
                                         <span class="text-muted sidebar__date"><?= get_the_date(); ?></span>
                                         <h5 class="card-title h6 m-0">

@@ -26,7 +26,7 @@ $query = new WP_Query($args);
 
         ?>
 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                     <div class="card-holder">
                         <div class="card offices__item">
                             <div class="row g-0 h-100">

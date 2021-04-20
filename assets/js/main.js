@@ -2,14 +2,14 @@ jQuery(document).ready(function ($) {
 
     $('.index-news').slick({
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 6000,
     });
 
     $('.partners').slick({
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 6000,
         responsive: [
             {
                 breakpoint: 1300,

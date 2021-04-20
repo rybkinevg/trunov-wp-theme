@@ -18,7 +18,7 @@
 
                         ?>
 
-                            <div class="mb-3">
+                            <div class="mb-3 position-absolute top-0 end-0">
                                 <span class="badge bg-primary">№ <?= $sort ?></span>
                             </div>
 
@@ -34,7 +34,7 @@
                         </p>
                         <h5 class="card-title">
                             <a href="<?= get_the_permalink(); ?>">
-                                <?= get_the_title(); ?>
+                                <?= kama_excerpt(['maxchar' => 60, 'text' => get_the_title(), 'autop' => false]) ?>
                             </a>
                         </h5>
                         <p class="card-text"><?= kama_excerpt(['maxchar' => 200, 'autop' => 0]); ?></p>

@@ -12,6 +12,11 @@ get_header();
 
             get_template_part('template-parts/index/content', 'slider');
 
+            if (is_mobile()) {
+
+                get_template_part('template-parts/index/content', 'news');
+            }
+
             get_template_part('template-parts/index/content', 'management');
 
             get_template_part('template-parts/index/content', 'offices');

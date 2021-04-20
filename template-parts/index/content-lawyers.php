@@ -110,7 +110,7 @@ $query = new WP_Query($args);
 
                             ?>
 
-                                <div class="m-3">
+                                <div class="m-3 position-absolute top-0 end-0">
                                     <span class="badge bg-primary">№ <?= $sort ?></span>
                                 </div>
 

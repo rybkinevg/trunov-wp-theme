@@ -156,11 +156,29 @@ a {
     font-size: 12px;
 }
 
+.services__link {
+    word-break: break-word;
+}
+
 /* MAIN - INDEX-NEWS */
 
 .index-news__item {
     position: relative;
     height: 500px;
+}
+
+@media (max-width: 900px) {
+
+    .index-news__item {
+        height: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .index-news__item {
+        height: 350px;
+    }
 }
 
 .index-news__caption {
@@ -210,6 +228,13 @@ a {
 
 .offices__img {
     height: 100%;
+}
+
+@media (max-width: 768px) {
+
+    .offices__img {
+        height: 100px;
+    }
 }
 
 .offices__text {
