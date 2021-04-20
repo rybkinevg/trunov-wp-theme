@@ -447,3 +447,13 @@ a {
         margin-right: 0;
     }
 }
+
+/* OUTLINE BOOTSTRAP */
+
+.dropdown-toggle--plus {
+    outline: none !important;
+}
+
+.navbar-toggler {
+    box-shadow: none !important;
+}
