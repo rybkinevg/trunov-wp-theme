@@ -104,3 +104,59 @@ function set_sort()
 }
 
 // set_sort();
+
+function set_show_on_the_main()
+{
+    global $wpdb;
+
+    $query = "
+        SELECT
+            ID
+        FROM
+            {$wpdb->posts}
+        WHERE
+            `post_type` = 'post'
+    ";
+
+    $results = $wpdb->get_results($query);
+
+    if ($results) {
+
+        foreach ($results as $post) {
+
+            $query = "
+                SELECT
+                    `meta_value`
+                FROM
+                    {$wpdb->postmeta}
+                WHERE
+                    `post_id` = '{$post->ID}'
+                AND
+                    `meta_key` = '_show_on_the_main'
+            ";
+
+            $sort = $wpdb->get_var($query);
+
+            if (is_null($sort)) {
+
+                $default = [
+                    'post_id'    => $post->ID,
+                    'meta_key'   => '_show_on_the_main',
+                    'meta_value' => 'show'
+                ];
+
+                $inserted_id = $wpdb->insert(
+                    $wpdb->postmeta,
+                    $default
+                );
+
+                if (!$inserted_id) {
+
+                    wp_die("Ошибка проставления порядка сортировки для поста - {$post->ID}");
+                }
+            }
+        }
+    }
+}
+
+// set_show_on_the_main();

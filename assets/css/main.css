@@ -407,3 +407,18 @@ a {
     padding: 0;
     list-style: none;
 }
+
+/* ADVOCATES */
+
+.advocates__img {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 500px) {
+    .advocates__img {
+        float: none;
+        margin-right: 0;
+    }
+}

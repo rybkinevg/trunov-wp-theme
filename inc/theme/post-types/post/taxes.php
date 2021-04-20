@@ -99,6 +99,11 @@ function alter_query($query)
             'post_type'      => 'post',
             'posts_per_page' => get_option('posts_per_page', 10),
             'paged'          => $paged,
+            'meta_key'       => '_sort',
+            'orderby'        => [
+                'meta_value_num' => 'ASC',
+                'date'           => 'DESC'
+            ],
             'tax_query'      => [
                 [
                     'taxonomy' => $tax,

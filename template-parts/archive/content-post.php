@@ -9,6 +9,25 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
+
+                        <?php
+
+                        if (current_user_can('manage_options')) {
+
+                            $sort = carbon_get_post_meta(get_the_ID(), 'sort');
+
+                        ?>
+
+                            <div class="mb-3">
+                                <span class="badge bg-primary">№ <?= $sort ?></span>
+                            </div>
+
+                        <?php
+
+                        }
+
+                        ?>
+
                         <p class="card-text text-muted archive__props">
                             <i class="fa fa-calendar me-2" aria-hidden="true"></i>
                             <span><?= get_the_date('j F Y'); ?></span>

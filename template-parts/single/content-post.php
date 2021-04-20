@@ -1,3 +1,26 @@
+<?php
+
+if (current_user_can('manage_options')) {
+
+    $status = (carbon_get_post_meta(get_the_ID(), 'show_on_the_main') == 'show') ? 'Видна на главной' : 'Не видна на главной';
+    $sort = carbon_get_post_meta(get_the_ID(), 'sort');
+    $editlink = get_edit_post_link(get_the_ID());
+
+?>
+
+    <div class="admin_notice border p-3 my-3">
+        <h4 class="mb-3">Краткая административная сводка</h4>
+        <p>Статус новости на главной: <?= $status ?></p>
+        <p>Порядок сортировки новости: <?= $sort ?></p>
+        <p class="m-0"><a class="text-decoration-underline" href="<?= $editlink ?>">Редактировать новость</a></p>
+    </div>
+
+<?php
+
+}
+
+?>
+
 <article class="single__item">
     <h2 class="single__title mb-4"><?= get_the_title(); ?></h2>
 

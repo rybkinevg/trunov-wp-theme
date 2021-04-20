@@ -10,6 +10,8 @@ Container::make(
     'Theme options'
 )->set_page_menu_title(
     'Настройки темы'
+)->set_page_menu_position(
+    2
 )->add_tab(
     'Шапка сайта',
     [

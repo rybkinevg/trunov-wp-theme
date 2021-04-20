@@ -52,7 +52,7 @@ if ($post_type == 'advocats') {
             ]
         ],
         'orderby' => [
-            'meta_value' => 'ASC',
+            'meta_value_num' => 'ASC',
         ]
     ];
 } else {
@@ -63,8 +63,8 @@ if ($post_type == 'advocats') {
         'post_status'    => 'publish',
         'meta_key'       => '_sort',
         'orderby'        => [
-            'meta_value' => 'ASC',
-            'date'       => 'DESC'
+            'meta_value_num' => 'ASC',
+            'date'           => 'DESC'
         ]
     ];
 }
@@ -102,6 +102,23 @@ $query = new WP_Query($args);
                                     </a>
                                 </p>
                             </div>
+                            <?php
+
+                            if (current_user_can('manage_options')) {
+
+                                $sort = carbon_get_post_meta(get_the_ID(), 'sort');
+
+                            ?>
+
+                                <div class="m-3">
+                                    <span class="badge bg-primary">№ <?= $sort ?></span>
+                                </div>
+
+                            <?php
+
+                            }
+
+                            ?>
                         </div>
                     </div>
                 </div>

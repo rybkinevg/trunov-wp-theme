@@ -9,7 +9,8 @@ function add_post_columns($columns)
         'title'      => 'Заголовок',
         'categories' => 'Рубрики',
         'tags'       => 'Метки',
-        'persons'    => 'Персоны'
+        'persons'    => 'Персоны',
+        'date'       => 'Дата публикации'
     ];
 
     return $columns;

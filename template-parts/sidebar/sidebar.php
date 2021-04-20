@@ -101,19 +101,15 @@ foreach ($sidebar_news as $label => $news) {
             'post_status'    => 'publish',
             'meta_key'       => '_sort',
             'orderby'        => [
-                'meta_value' => 'ASC',
-                'date'       => 'DESC'
+                'meta_value_num' => 'ASC',
+                'date'           => 'DESC'
             ],
             'meta_query'     => [
                 'relation' => 'OR',
                 [
-                    'key'     => 'show_on_the_main',
-                    'value'   => 'hide',
-                    'compare' => '!=',
-                ],
-                [
-                    'key'     => 'show_on_the_main',
-                    'compare' => 'NOT EXISTS',
+                    'key'     => '_show_on_the_main',
+                    'value'   => 'show',
+                    'compare' => '=',
                 ]
             ]
         ];
