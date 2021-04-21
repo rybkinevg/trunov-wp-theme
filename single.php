@@ -11,7 +11,7 @@ while (have_posts()) {
 ?>
 
     <main class="main site__item">
-        <div class="breadcrums">
+        <div class="breadcrums mb-3">
             <?php trunov_breadcrumbs(); ?>
         </div>
 

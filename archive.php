@@ -13,7 +13,16 @@ if (have_posts()) {
             <?php trunov_breadcrumbs(); ?>
         </div>
         <section class="archive archive__<?= $post_type; ?>">
-            <?= trunov_archive_title($post_type); ?>
+
+            <?php
+
+            if ('advocats' != $post_type && 'juristy' != $post_type) {
+
+                echo trunov_archive_title($post_type);
+            }
+
+            ?>
+
             <div class="row">
 
                 <div class="content col-lg-8">
