@@ -2564,6 +2564,13 @@ $delo_links = [
                                     <div class="t696__descr t-descr t-descr_xl t-margin_auto" style="" field="descr"><span style="color: rgb(255, 255, 255);">Наш специалист свяжется с вами, чтобы уточнить дату и время встречи для подробной оценки дела</span></div>
                                 </div>
                                 <div>
+
+                                    <?php
+
+                                    // echo do_shortcode('[contact-form-7 id="29081" title="Без названия"]');
+
+                                    ?>
+
                                     <form id="form286290705" name='form286290705' role="form" action='' method='POST' data-formactiontype="0" data-inputbox=".t-input-group" class="t-form js-form-proccess t-form_inputs-total_3 t-form_bbonly " data-success-callback="t696_onSuccess">
                                         <!-- NO ONE SERVICES CONNECTED -->
                                         <div class="js-successbox t-form__successbox t-text t-text_md" style="display:none;"></div>
