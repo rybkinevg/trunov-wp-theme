@@ -254,7 +254,7 @@ if ($added_publications) {
 
     <section class="sidebar__section topics">
         <h3 class="widget-title">Актуальные научные публикации</h3>
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush" style="font-size: 14px;">
 
             <?php
 
@@ -263,7 +263,7 @@ if ($added_publications) {
             ?>
 
                 <li class="list-group-item">
-                    <a href="<?= $publication['index-publications-link'] ?>"><?= $publication['index-publications-title'] ?></a>
+                    <a class="link-secondary" href="<?= $publication['index-publications-link'] ?>"><?= $publication['index-publications-title'] ?></a>
                 </li>
 
             <?php
