@@ -159,20 +159,27 @@ Container::make(
             "
         ),
         Field::make(
-            'association',
-            'sidebar-publications',
-            'Научные публикации в сайдбаре'
-        )->set_types(
+            'complex',
+            'index-publications',
+            'Научные публикации'
+        )->setup_labels(
             [
-                [
-                    'type'      => 'post',
-                    'post_type' => 'publications',
-                ]
+                'plural_name'   => 'публикации',
+                'singular_name' => 'публикацию',
             ]
-        )->set_max(
-            5
-        )->set_help_text(
-            'Выбранные темы будут отображаться в разделе "Актуальные научные публикации" в сайдбаре, если не указывать, то выведуться последние публикации'
+        )->add_fields(
+            [
+                Field::make(
+                    'text',
+                    'index-publications-title',
+                    'Заголовок'
+                ),
+                Field::make(
+                    'text',
+                    'index-publications-link',
+                    'Ссылка'
+                )
+            ]
         )
     ]
 )->add_tab(

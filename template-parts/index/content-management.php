@@ -41,7 +41,9 @@ $query = new WP_Query($args);
                     <div class="card-holder">
                         <div class="card">
                             <div class="management__img">
-                                <?= trunov_get_thumbnail(); ?>
+                                <a href="<?= get_the_permalink(); ?>" class="d-block h-100">
+                                    <?= trunov_get_thumbnail(); ?>
+                                </a>
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">

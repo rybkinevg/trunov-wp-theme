@@ -66,7 +66,7 @@ $query = new WP_Query($args);
                             </div>
                             <div class="card-body">
                                 <p class="card-text text-center">
-                                    <a href="<?= get_the_permalink(); ?>">
+                                    <a class="stretched-link" href="<?= get_the_permalink(); ?>">
                                         <?= get_the_title(); ?>
                                     </a>
                                 </p>

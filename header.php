@@ -31,13 +31,15 @@ $site_socials = carbon_get_theme_option('site-socials');
         <header class="site__item header d-none d-lg-block">
             <div class="d-flex flex-wrap justify-content-between align-items-center py-3">
                 <a href="/" class="text-decoration-none">
-                    <img src="<?= get_template_directory_uri() . '/assets/img/logo.png' ?>" alt="" width="120px" height="120px">
                     <img src="<?= get_template_directory_uri() . '/assets/img/Legal500.png' ?>" alt="" width="120px" height="120px">
                 </a>
                 <div class="header__brand">
                     <h1><?= $site_title; ?></h1>
                     <p><?= $site_desc; ?></p>
                 </div>
+                <a href="/" class="text-decoration-none">
+                    <img src="<?= get_template_directory_uri() . '/assets/img/logo.png' ?>" alt="" width="120px" height="120px">
+                </a>
                 <div class="header__contacts">
                     <?php
 

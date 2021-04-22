@@ -38,7 +38,7 @@ $query = new WP_Query($args);
                                 <div class="col-md-7">
                                     <div class="card-body offices__text">
                                         <h5 class="card-title text-center m-0">
-                                            <a href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a>
+                                            <a class="stretched-link" href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a>
                                         </h5>
                                     </div>
                                 </div>

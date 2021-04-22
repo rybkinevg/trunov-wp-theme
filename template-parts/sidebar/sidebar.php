@@ -1,7 +1,7 @@
 <?php
 
 $sidebar_topics = carbon_get_theme_option('sidebar-topics');
-$sidebar_publications = carbon_get_theme_option('sidebar-publications');
+// $sidebar_publications = carbon_get_theme_option('sidebar-publications');
 
 if ($sidebar_topics) {
 
@@ -116,6 +116,12 @@ foreach ($sidebar_news as $label => $news) {
 
         $args[$key] = $value;
 
+        $cat = get_category_by_slug($value);
+
+        $cat_id = $cat->term_id;
+
+        $cat_link = get_category_link($cat_id);
+
         $query = new WP_Query($args);
 
     ?>
@@ -167,43 +173,84 @@ foreach ($sidebar_news as $label => $news) {
 
             ?>
 
+            <a class="link-primary text-decoration-underline" href="<?= $cat_link; ?>">Все <?= $label; ?></a>
+
         </section>
 
     <?php
     }
 }
 
-if ($sidebar_publications) {
+$args = [
+    'taxonomy'      => ['topics'],
+    'include'       => '516'
+];
 
-    foreach ($sidebar_publications as $publication) {
+$terms = get_terms($args);
 
-        $include[] = $publication['id'];
-    }
-
-    $args = [
-        'post_type'      => 'publications',
-        'posts_per_page' => 5,
-        'post_status'    => 'publish',
-        'orderby'        => 'date',
-        'post__in'       => $include
-    ];
-
-    $query = new WP_Query($args);
-} else {
-
-    $args = [
-        'post_type'      => 'publications',
-        'posts_per_page' => 5,
-        'post_status'    => 'publish',
-        'orderby'        => 'date',
-    ];
-
-    $query = new WP_Query($args);
-}
-
-if ($query->have_posts()) {
+if ($terms) {
 
     ?>
+
+    <section class="sidebar__section topics mt-5">
+        <h2 class="h4 visually-hidden">Темы</h2>
+
+        <?php
+
+        foreach ($terms as $term) {
+
+        ?>
+
+            <div class="card-holder">
+                <article class="card">
+                    <div class="row g-0">
+                        <div class="col-md-5">
+                            <div class="sidebar__thumb">
+                                <picture>
+                                    <source srcset="<?= get_template_directory_uri() . '/assets/img/blank.gif' ?>" media="(max-width: 992px)">
+                                    <?php
+
+                                    if ($thumb_id = get_term_meta($term->term_id, '_thumbnail_id', true)) {
+
+                                        $src = wp_get_attachment_image_url($thumb_id, 'full');
+                                        $class = 'img--cover';
+                                        $alt = 'Миниатюра записи';
+
+                                        echo "<img class='img {$class}' src='{$src}' alt='{$alt}'>";
+                                    }
+
+                                    ?>
+                                </picture>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="sidebar__text card-body">
+                                <h5 class="card-title h6 m-0">
+                                    <a href="<?= wp_make_link_relative(get_term_link($term->term_id)); ?>"><?= $term->name ?></a>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        <?php
+
+        }
+
+        ?>
+
+    </section>
+
+<?php
+
+}
+
+$added_publications = carbon_get_theme_option('index-publications') ?: null;
+
+if ($added_publications) {
+
+?>
 
     <section class="sidebar__section topics">
         <h3 class="widget-title">Актуальные научные публикации</h3>
@@ -211,21 +258,17 @@ if ($query->have_posts()) {
 
             <?php
 
-            while ($query->have_posts()) {
-
-                $query->the_post();
+            foreach ($added_publications as $publication) {
 
             ?>
 
                 <li class="list-group-item">
-                    <a href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a>
+                    <a href="<?= $publication['index-publications-link'] ?>"><?= $publication['index-publications-title'] ?></a>
                 </li>
 
             <?php
 
             }
-
-            wp_reset_postdata();
 
             ?>
 
@@ -244,5 +287,60 @@ if ($query->have_posts()) {
     <a href="/books" class="books__img" style="display: block; width: 100%; height: 220px;">
         <img class="img img--cover" src="<?= get_template_directory_uri() . '/assets/img/books.jpg' ?>" alt="">
     </a>
+
+</section>
+
+<?php
+
+$args = [
+    'post_type'      => 'partners',
+    'posts_per_page' => -1,
+    'post_status'    => 'public'
+];
+
+$query = new WP_Query($args);
+
+?>
+
+<section class="sidebar__section">
+
+    <h2 class="h4">Партнёры</h2>
+
+    <div class="partners border p-3">
+
+        <div class="row justify-content-center">
+
+            <?php
+
+            if ($query->have_posts()) {
+
+                while ($query->have_posts()) {
+
+                    $query->the_post();
+
+            ?>
+
+                    <div class="col col-3">
+                        <div class="parners__item">
+                            <div class="d-block w-100 p-2 h-100">
+                                <a href="<?= carbon_get_post_meta(get_the_ID(), 'partners_url') ?>" target="_blank" rel="noopener noreferrer" title="<?= get_the_title(); ?>">
+                                    <img class='img img--contain' src='<?= get_the_post_thumbnail_url(); ?>' alt='<?= get_the_title(); ?>'>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+            <?php
+
+                }
+            }
+
+            wp_reset_postdata();
+
+            ?>
+
+        </div>
+
+    </div>
 
 </section>

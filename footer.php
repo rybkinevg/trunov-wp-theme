@@ -1,4 +1,8 @@
-<?php get_template_part('template-parts/index/content', 'partners'); ?>
+<?php
+
+// get_template_part('template-parts/index/content', 'partners');
+
+?>
 
 <section class="section footer-nav">
     <h2 class=" visually-hidden">Навигация в подвале</h2>
