@@ -2572,6 +2572,23 @@ $delo_links = [
                                     ?>
 
                                     <style>
+                                        .screen-reader-response {
+                                            display: none;
+                                        }
+
+                                        .t-input-block input {
+                                            color: #ffffff;
+                                            border: 1px solid #d6d6d6;
+                                        }
+
+                                        .t-submit {
+                                            color: #ffffff;
+                                            background-color: #5087cb;
+                                            border-radius: 0px;
+                                            -moz-border-radius: 0px;
+                                            -webkit-border-radius: 0px;
+                                        }
+
                                         #rec286290705 input::-webkit-input-placeholder {
                                             color: #ffffff;
                                             opacity: 0.5;
