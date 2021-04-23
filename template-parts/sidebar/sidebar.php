@@ -59,7 +59,7 @@ if ($terms) {
                         <div class="col-md-7">
                             <div class="sidebar__text card-body">
                                 <h5 class="card-title h6 m-0">
-                                    <a href="<?= wp_make_link_relative(get_term_link($term->term_id)); ?>"><?= $term->name ?></a>
+                                    <a class="stretched-link" href="<?= wp_make_link_relative(get_term_link($term->term_id)); ?>"><?= $term->name ?></a>
                                 </h5>
                             </div>
                         </div>
@@ -154,7 +154,7 @@ foreach ($sidebar_news as $label => $news) {
                                     <div class="card-body">
                                         <span class="text-muted sidebar__date"><?= get_the_date(); ?></span>
                                         <h5 class="card-title h6 m-0">
-                                            <a href="<?= get_the_permalink(); ?>">
+                                            <a class="stretched-link" href="<?= get_the_permalink(); ?>">
                                                 <?= kama_excerpt(['maxchar' => 60, 'text' => get_the_title(), 'autop' => false]) ?>
                                             </a>
                                         </h5>

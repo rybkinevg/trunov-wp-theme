@@ -20,6 +20,7 @@ $site_socials = carbon_get_theme_option('site-socials');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="/wp-content/uploads/2021/04/Banner-gonorar-kollegi-resajz.jpg">
     <link rel="icon" href="<?= get_template_directory_uri() . '/favicon.ico' ?>" type="image/x-icon" />
     <?php wp_head(); ?>
 </head>
@@ -109,11 +110,20 @@ $site_socials = carbon_get_theme_option('site-socials');
 
                     ?>
 
+                    <div class="col-auto d-flex align-items-center">
+
+                        <?= do_shortcode('[glt language="English" label="EN" image="no" text="yes" image_size="24"]') ?>
+                        <span style="margin: 0 5px;">/</span>
+                        <?= do_shortcode('[glt language="Russian" label="RU" image="no" text="yes" image_size="24"]') ?>
+
+                    </div>
+
                     <div class="col-auto d-flex justify-content-center">
 
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#search-modal">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
+
                     </div>
 
                 </div>

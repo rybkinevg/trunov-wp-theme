@@ -33,7 +33,7 @@ $query = new WP_Query($args);
                                 <?= trunov_get_thumbnail(); ?>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title text-center"><a class="services__link" href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a></h5>
+                                <h5 class="card-title text-center"><a class="services__link stretched-link" href="<?= get_the_permalink(); ?>"><?= get_the_title(); ?></a></h5>
                                 <div class="d-none d-lg-block card-text services__text"><?= kama_excerpt(['maxchar' => 80, 'autop' => false]) ?></div>
                             </div>
                         </div>

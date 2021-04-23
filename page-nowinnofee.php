@@ -2567,84 +2567,10 @@ $delo_links = [
 
                                     <?php
 
-                                    // echo do_shortcode('[contact-form-7 id="29081" title="Без названия"]');
+                                    echo do_shortcode('[contact-form-7 id="29128" title="Форма Гонорар успеха"]');
 
                                     ?>
 
-                                    <form id="form286290705" name='form286290705' role="form" action='' method='POST' data-formactiontype="0" data-inputbox=".t-input-group" class="t-form js-form-proccess t-form_inputs-total_3 t-form_bbonly " data-success-callback="t696_onSuccess">
-                                        <!-- NO ONE SERVICES CONNECTED -->
-                                        <div class="js-successbox t-form__successbox t-text t-text_md" style="display:none;"></div>
-                                        <div class="t-form__inputsbox">
-                                            <div class="t-input-group t-input-group_ph" data-input-lid="1495629963726">
-                                                <div class="t-input-block"> <input type="tel" autocomplete="tel" name="Phone" data-phonemask-init="no" data-phonemask-id="286290705" data-phonemask-lid="1495629963726" data-phonemask-maskcountry="RU" class="t-input js-phonemask-input js-tilda-rule t-input_bbonly" value="" placeholder="+1(999)999-9999" data-tilda-req="1" style="color:#ffffff; border:1px solid #d6d6d6; ">
-                                                    <script type="text/javascript">
-                                                        if (!document.getElementById('t-phonemask-script')) {
-                                                            (function(d, w, o) {
-                                                                var n = d.getElementsByTagName(o)[0],
-                                                                    s = d.createElement(o),
-                                                                    f = function() {
-                                                                        n.parentNode.insertBefore(s, n);
-                                                                    };
-                                                                s.type = "text/javascript";
-                                                                s.async = true;
-                                                                s.id = 't-phonemask-script';
-                                                                s.src = "<?= $dir_uri ?>/js/tilda-phone-mask-1.1.min.js";
-                                                                if (w.opera == "[object Opera]") {
-                                                                    d.addEventListener("DOMContentLoaded", f, false);
-                                                                } else {
-                                                                    f();
-                                                                }
-                                                            })(document, window, 'script');
-                                                        } else {
-                                                            $(document).ready(function() {
-                                                                if (typeof t_form_phonemask_load == 'function') {
-                                                                    t_form_phonemask_load($('#rec286290705 [data-phonemask-lid=1495629963726]'));
-                                                                }
-                                                            });
-                                                        }
-                                                    </script>
-                                                    <div class="t-input-error"></div>
-                                                </div>
-                                            </div>
-                                            <div class="t-input-group t-input-group_nm" data-input-lid="1495630353482">
-                                                <div class="t-input-block"> <input type="text" autocomplete="name" name="Name" class="t-input js-tilda-rule t-input_bbonly" value="" placeholder="Имя" data-tilda-req="1" data-tilda-rule="name" style="color:#ffffff; border:1px solid #d6d6d6; ">
-                                                    <div class="t-input-error"></div>
-                                                </div>
-                                            </div>
-                                            <div class="t-input-group t-input-group_in" data-input-lid="1496334743199">
-                                                <div class="t-input-block"> <input type="text" name="Input" class="t-input js-tilda-rule t-input_bbonly" value="" placeholder="Краткое описание дела" data-tilda-req="1" style="color:#ffffff; border:1px solid #d6d6d6; ">
-                                                    <div class="t-input-error"></div>
-                                                </div>
-                                            </div>
-                                            <div class="t-form__errorbox-middle">
-                                                <div class="js-errorbox-all t-form__errorbox-wrapper" style="display:none;">
-                                                    <div class="t-form__errorbox-text t-text t-text_md">
-                                                        <p class="t-form__errorbox-item js-rule-error js-rule-error-all"></p>
-                                                        <p class="t-form__errorbox-item js-rule-error js-rule-error-req"></p>
-                                                        <p class="t-form__errorbox-item js-rule-error js-rule-error-email"></p>
-                                                        <p class="t-form__errorbox-item js-rule-error js-rule-error-name"></p>
-                                                        <p class="t-form__errorbox-item js-rule-error js-rule-error-phone"></p>
-                                                        <p class="t-form__errorbox-item js-rule-error js-rule-error-minlength"></p>
-                                                        <p class="t-form__errorbox-item js-rule-error js-rule-error-string"></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="t-form__submit"> <button type="submit" class="t-submit" style="color:#ffffff;background-color:#5087cb;border-radius:0px; -moz-border-radius:0px; -webkit-border-radius:0px;">Отправить</button> </div>
-                                        </div>
-                                        <div class="t-form__errorbox-bottom">
-                                            <div class="js-errorbox-all t-form__errorbox-wrapper" style="display:none;">
-                                                <div class="t-form__errorbox-text t-text t-text_md">
-                                                    <p class="t-form__errorbox-item js-rule-error js-rule-error-all"></p>
-                                                    <p class="t-form__errorbox-item js-rule-error js-rule-error-req"></p>
-                                                    <p class="t-form__errorbox-item js-rule-error js-rule-error-email"></p>
-                                                    <p class="t-form__errorbox-item js-rule-error js-rule-error-name"></p>
-                                                    <p class="t-form__errorbox-item js-rule-error js-rule-error-phone"></p>
-                                                    <p class="t-form__errorbox-item js-rule-error js-rule-error-minlength"></p>
-                                                    <p class="t-form__errorbox-item js-rule-error js-rule-error-string"></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
                                     <style>
                                         #rec286290705 input::-webkit-input-placeholder {
                                             color: #ffffff;
